@@ -216,7 +216,7 @@ class Company_profile_module extends Main
 		}
 
 		if ($this->data['user_access']->export_data != 1) {
-			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Export " . $user_access->module_name);
+			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Export " . $user_access->name);
 			REDIRECT(MAINSITE_Admin . "wam/access-denied");
 		}
 		$search = array();
@@ -333,13 +333,13 @@ class Company_profile_module extends Main
 		}
 		if (empty($id)) {
 			if ($user_access->add_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
 		if (!empty($id)) {
 			if ($user_access->update_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
@@ -401,7 +401,7 @@ class Company_profile_module extends Main
 		// Check if the user has permission to add new entries
 		if (empty($id)) {
 			if ($user_access->add_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
@@ -409,7 +409,7 @@ class Company_profile_module extends Main
 		// Check if the user has permission to update existing entries
 		if (!empty($id)) {
 			if ($user_access->update_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
@@ -595,7 +595,7 @@ class Company_profile_module extends Main
 			REDIRECT(MAINSITE_Admin . $user_access->class_name . '/' . $user_access->function_name);
 		} else {
 			// Set flash message for no access
-			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 
 			// Redirect to access denied page
 			REDIRECT(MAINSITE_Admin . "wam/access-denied");

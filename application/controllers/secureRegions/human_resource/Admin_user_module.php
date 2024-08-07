@@ -224,7 +224,7 @@ class Admin_user_module extends Main
 		}
 
 		if ($this->data['user_access']->export_data != 1) {
-			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Export " . $user_access->module_name);
+			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Export " . $user_access->name);
 			REDIRECT(MAINSITE_Admin . "wam/access-denied");
 		}
 		$search = array();
@@ -285,13 +285,13 @@ class Admin_user_module extends Main
 		$this->load->view('secureRegions/human_resource/Admin_user_module/list_export', $this->data);
 	}
 
-	function view($admin_user_id = "")
+	function view($id = "")
 	{
 		$this->data['page_type'] = "list";
 		$user_access = $this->data['user_access'] = $this->data['User_auth_obj']->check_user_access(array("module_id" => $this->data['page_module_id']));
 
 
-		if (empty($admin_user_id)) {
+		if (empty($id)) {
 			$alert_message = '<div class="alert alert-danger alert-dismissible"><button type="button" class="close"
 			 data-dismiss="alert" aria-hidden="true">×</button><i class="icon fas fa-ban"></i> Something Went Wrong. Please Try Again. </div>';
 			$this->session->set_flashdata('alert_message', $alert_message);
@@ -310,7 +310,7 @@ class Admin_user_module extends Main
 		$this->data['page_parent_module_id'] = $this->data['user_access']->parent_module_id;
 
 
-		$this->data['admin_user_data'] = $this->Admin_user_model->get_admin_user_data(array("admin_user_id" => $admin_user_id, "details" => 1));
+		$this->data['admin_user_data'] = $this->Admin_user_model->get_admin_user_data(array("id" => $id, "details" => 1));
 
 
 		//if there is no data for given admin_user_id show page not found page
@@ -339,7 +339,7 @@ class Admin_user_module extends Main
 		parent::get_footer();
 	}
 
-	function edit($admin_user_id = "")
+	function edit($id = "")
 	{
 		$this->data['page_type'] = "list";
 		$user_access = $this->data['user_access'] = $this->data['User_auth_obj']->check_user_access(array("module_id" => $this->data['page_module_id']));
@@ -348,27 +348,27 @@ class Admin_user_module extends Main
 			REDIRECT(MAINSITE_Admin . "wam/access-denied");
 		}
 
-		if (empty($admin_user_id)) {
+		if (empty($id)) {
 			if ($user_access->add_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
 
-		if (!empty($admin_user_id)) {
+		if (!empty($id)) {
 			if ($user_access->update_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
 
-		$this->data['country_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'country', 'where' => "country_id > 0", "order_by" => "name ASC"));
+		$this->data['country_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'country', 'where' => "id > 0", "order_by" => "name ASC"));
 
-		$this->data['admin_user_role_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'admin_user_role', 'where' => "admin_user_role_id > 0", "order_by" => "name ASC"));
+		$this->data['admin_user_role_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'admin_user_role', 'where' => "id > 0", "order_by" => "name ASC"));
 
-		$this->data['company_profile_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'company_profile', 'where' => "company_profile_id > 0 and status = 1", "order_by" => "company_unique_name ASC"));
+		$this->data['company_profile_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'company_profile', 'where' => "id > 0 and status = 1", "order_by" => "company_unique_name ASC"));
 
-		$this->data['designation_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'designation', 'where' => "designation_id > 0", "order_by" => "name ASC"));
+		$this->data['designation_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'designation', 'where' => "id > 0", "order_by" => "name ASC"));
 		// $this->data['document_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'document', 'where' => "document_id > 0", "order_by" => "document_name ASC"));
 
 		// Assigning additional data for the view
@@ -376,8 +376,8 @@ class Admin_user_module extends Main
 		$this->data['page_parent_module_id'] = $this->data['user_access']->parent_module_id;
 
 
-		if (!empty($admin_user_id)) {
-			$this->data['admin_user_data'] = $this->Admin_user_model->get_admin_user_data(array("admin_user_id" => $admin_user_id, "details" => 1));
+		if (!empty($id)) {
+			$this->data['admin_user_data'] = $this->Admin_user_model->get_admin_user_data(array("id" => $id, "details" => 1));
 			if (empty($this->data['admin_user_data'])) {
 				$this->session->set_flashdata('alert_message', '<div class="alert alert-danger alert-dismissible">
 					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -423,7 +423,7 @@ class Admin_user_module extends Main
 
 		if (empty($id)) {
 			if ($user_access->add_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
@@ -431,7 +431,7 @@ class Admin_user_module extends Main
 
 		if (!empty($id)) {
 			if ($user_access->update_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
@@ -613,7 +613,7 @@ class Admin_user_module extends Main
 			}
 			REDIRECT(MAINSITE_Admin . $user_access->class_name . '/' . $user_access->function_name);
 		} else {
-			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 			REDIRECT(MAINSITE_Admin . "wam/access-denied");
 		}
 	}

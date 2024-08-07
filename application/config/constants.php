@@ -11,7 +11,7 @@ define('_project_name_', "CI3 T_ID_T_NAME");//this is used in
 define('_project_name_for_web_title_', "CI3 T_ID_T_NAME"); # to display
 define('_project_complete_name_', "CI3 T_ID_T_NAME"); # to display
 define('_brand_name_', "CTITN");//need in left_nav
-define('_summernote_', "");//need in left_nav
+define('_summernote_', "");
 // define('_project_address_', "MPP Complex, Shop No. 14 15 Siddipet Road Ramayampet Medak, Telangana, 502101 India.");
 // define('_project_contact_', "+91 93921 99595");
 // define('_project_contact2_', "+91 96663 64912");

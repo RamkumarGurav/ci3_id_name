@@ -31,27 +31,28 @@ class Company_profile_model extends CI_Model
 			$this->db->select("count(ft.company_profile_id) as counts"); // Select count of company profiles
 		} else {
 			// Select specific columns and additional fields for company profiles
-			$this->db->select("ft.*, ci.city_name, s.state_name, c.country_name, c.country_short_name, c.dial_code");
+			$this->db->select("ft.*, ci.name as city_name, s.name as state_name, c.name as country_name, 
+			c.short_name as country_short_name, c.dial_code");
 			$this->db->select("(select au.name from admin_user as  au where au.id = ft.added_by) as added_by_name");
 			$this->db->select("(select au.name from admin_user as  au where au.id = ft.updated_by) as updated_by_name");
 		}
 
 
 		$this->db->from("company_profile as ft"); // Select from company_profile table
-		$this->db->join("country as c", "c.country_id = ft.country_id"); // Join country table
-		$this->db->join("state as s", "s.state_id = ft.state_id"); // Join state table
-		$this->db->join("city as ci", "ci.city_id = ft.city_id"); // Join city table
+		$this->db->join("country as c", "c.id = ft.country_id"); // Join country table
+		$this->db->join("state as s", "s.id = ft.state_id"); // Join state table
+		$this->db->join("city as ci", "ci.id = ft.city_id"); // Join city table
 
 		// Conditional logic for ordering results
 		if (!empty($params['order_by'])) {
 			$this->db->order_by($params['order_by']);
 		} else {
-			$this->db->order_by("ft.company_profile_id desc"); // Default order by admin_user_id descending
+			$this->db->order_by("ft.id desc"); // Default order by admin_user_id descending
 		}
 
 
-		if (!empty($params['company_profile_id'])) {
-			$this->db->where("ft.company_profile_id", $params['company_profile_id']); // Filter by company_profile_id
+		if (!empty($params['id'])) {
+			$this->db->where("ft.id", $params['id']); // Filter by company_profile_id
 		}
 		if (!empty($params['country_id'])) {
 			$this->db->where("ft.country_id", $params['country_id']); // Filter by country_id

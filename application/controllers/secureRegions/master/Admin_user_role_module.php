@@ -219,7 +219,7 @@ class Admin_user_role_module extends Main
 		}
 
 		if ($this->data['user_access']->export_data != 1) {
-			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Export " . $this->data['user_access']->module_name);
+			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Export " . $this->data['user_access']->name);
 			REDIRECT(MAINSITE_Admin . "wam/access-denied");
 		}
 
@@ -351,13 +351,13 @@ class Admin_user_role_module extends Main
 		}
 		if (empty($id)) {
 			if ($user_access->add_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
 		if (!empty($id)) {
 			if ($user_access->update_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
@@ -421,13 +421,13 @@ class Admin_user_role_module extends Main
 		// Check if the user is allowed to add or update roles based on the id
 		if (empty($id)) {
 			if ($user_access->add_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Add " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
 		if (!empty($id)) {
 			if ($user_access->update_module != 1) {
-				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+				$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 				REDIRECT(MAINSITE_Admin . "wam/access-denied");
 			}
 		}
@@ -622,7 +622,7 @@ class Admin_user_role_module extends Main
 			}
 			REDIRECT(MAINSITE_Admin . $user_access->class_name . '/' . $user_access->function_name);
 		} else {
-			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->module_name);
+			$this->session->set_flashdata('no_access_flash_message', "You Are Not Allowed To Update " . $user_access->name);
 			REDIRECT(MAINSITE_Admin . "wam/access-denied");
 		}
 	}

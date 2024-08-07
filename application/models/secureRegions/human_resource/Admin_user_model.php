@@ -37,7 +37,7 @@ class Admin_user_model extends CI_Model
 		} else {
 
 			// Select all required fields and additional information
-			$this->db->select("ft.*, dm.designation_name , ci.city_name , s.state_name , c.country_name , c.country_short_name, c.dial_code ");
+			$this->db->select("ft.*, dm.name as designation_name , ci.name as city_name , s.name as state_name , c.name as country_name , c.short_name as country_short_name, c.dial_code ");
 			$this->db->select("(select au.name from admin_user as  au where au.id = ft.added_by) as added_by_name");
 			$this->db->select("(select au.name from admin_user as  au where au.id = ft.updated_by) as updated_by_name");
 		}
@@ -45,21 +45,21 @@ class Admin_user_model extends CI_Model
 		$this->db->from("admin_user as ft");
 
 		// Joins with other tables
-		$this->db->join("country as  c", "c.country_id = ft.country_id");
-		$this->db->join("state as  s", "s.state_id = ft.state_id");
-		$this->db->join("city as  ci", "ci.city_id = ft.city_id");
-		$this->db->join("designation as  dm", "dm.designation_id = ft.designation_id");
+		$this->db->join("country as  c", "c.id = ft.country_id");
+		$this->db->join("state as  s", "s.id = ft.state_id");
+		$this->db->join("city as  ci", "ci.id = ft.city_id");
+		$this->db->join("designation as  dm", "dm.id = ft.designation_id");
 
 		// Conditional logic for ordering results
 		if (!empty($params['order_by'])) {
 			$this->db->order_by($params['order_by']);
 		} else {
-			$this->db->order_by("ft.admin_user_id desc"); // Default order by admin_user_id descending
+			$this->db->order_by("ft.id desc"); // Default order by admin_user_id descending
 		}
 
 		// Conditions based on provided parameters
-		if (!empty($params['admin_user_id'])) {
-			$this->db->where("ft.admin_user_id", $params['admin_user_id']);
+		if (!empty($params['id'])) {
+			$this->db->where("ft.id", $params['id']);
 		}
 		if (!empty($params['country_id'])) {
 			$this->db->where("ft.country_id", $params['country_id']);
@@ -115,17 +115,17 @@ class Admin_user_model extends CI_Model
 		if (!empty($result) && !empty($params['details'])) {
 			foreach ($result as $admin_user) {
 				// Fetch roles for each admin_user
-				$this->db->select("ft.* , aur.admin_user_role_name , cp.company_unique_name");
+				$this->db->select("ft.* , aur.name as admin_user_role_name , cp.company_unique_name");
 				$this->db->from("join_au_cp_aur as ft");
-				$this->db->join("admin_user_role as aur", "aur.admin_user_role_id = ft.admin_user_role_id");
-				$this->db->join("company_profile as  cp", "cp.company_profile_id = ft.company_profile_id");
-				$this->db->where("ft.admin_user_id", $admin_user->admin_user_id);
+				$this->db->join("admin_user_role as aur", "aur.id = ft.admin_user_role_id");
+				$this->db->join("company_profile as  cp", "cp.id = ft.company_profile_id");
+				$this->db->where("ft.admin_user_id", $admin_user->id);
 				$admin_user->roles = $this->db->get()->result();
 
 				// Fetch files for each admin_user
 				$this->db->select("ft.*");
 				$this->db->from("admin_user_file as ft");
-				$this->db->where("ft.admin_user_id", $admin_user->admin_user_id);
+				$this->db->where("ft.admin_user_id", $admin_user->id);
 				$admin_user->files = $this->db->get()->result();
 			}
 		}

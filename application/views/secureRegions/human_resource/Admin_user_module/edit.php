@@ -213,15 +213,15 @@ if (!empty($admin_user_data)) {
 										<select type="text" class="form-control form-control-sm" required id="designation_id"
 											name="designation_id">
 											<option value="">Select Designation</option>
-											<?php foreach ($designation_data as $d) {
+											<?php foreach ($designation_data as $item) {
 												$selected = "";
-												if ($d->designation_id == $designation_id) {
+												if ($item->id == $designation_id) {
 													$selected = "selected";
 												}
 												?>
-												<option value="<?php echo $d->designation_id ?>" <?php echo $selected ?>>
-													<?php echo $d->designation_name ?>
-													<?php if ($d->status != 1) {
+												<option value="<?php echo $item->id ?>" <?php echo $selected ?>>
+													<?php echo $item->name ?>
+													<?php if ($item->status != 1) {
 														echo " [Block]";
 													} ?>
 												</option>
@@ -379,15 +379,15 @@ if (!empty($admin_user_data)) {
 										<select type="text" class="form-control form-control-sm custom-select" required id="country_id"
 											onchange="get_state(this.value ,0)" name="country_id">
 											<option value="">Select Country</option>
-											<?php foreach ($country_data as $cd) {
+											<?php foreach ($country_data as $item) {
 												$selected = "";
-												if ($cd->country_id == $country_id) {
+												if ($item->id == $country_id) {
 													$selected = "selected";
 												}
 												?>
-												<option value="<?php echo $cd->country_id ?>" <?php echo $selected ?>>
-													<?php echo $cd->country_name ?>
-													<?php if ($cd->status != 1) {
+												<option value="<?php echo $item->id ?>" <?php echo $selected ?>>
+													<?php echo $item->name ?>
+													<?php if ($item->status != 1) {
 														echo " [Block]";
 													} ?>
 												</option>
@@ -456,7 +456,7 @@ if (!empty($admin_user_data)) {
 													</thead>
 													<tbody class="collapse" id="uploadImg_auf">
 														<?php foreach ($admin_user_data->files as $item) { ?>
-															<tr id="gi<?= $item->admin_user_file_id ?>">
+															<tr id="gi<?= $item->id ?>">
 																<td><?= !empty($item->file_title) ? $item->file_title : "No Name" ?></td>
 																<td><span class="">
 																		<a target="_blank" href="<?= _uploaded_files_ . 'admin_user_file/' . $item->file_name ?>">
@@ -465,7 +465,7 @@ if (!empty($admin_user_data)) {
 																		</a>
 																	</span></td>
 																<td><button class=" btn btn-outline-danger btn-xs"
-																		onclick="return del_auf('<?= $item->admin_user_file_id ?>')" title="remove"><i
+																		onclick="return del_auf('<?= $item->id ?>')" title="remove"><i
 																			class="fas fa-trash"></i></button></td>
 															</tr>
 														<?php } ?>
@@ -876,8 +876,8 @@ if (!empty($admin_user_data)) {
 		set_qe_sub_table_count_auf();
 	}
 
-	function del_auf($admin_user_file_id) {
-		if (parseInt($admin_user_file_id) > 0) {
+	function del_auf($id) {
+		if (parseInt($id) > 0) {
 			var s = confirm('You want to delete this file?');
 			if (s) {
 				$.ajax({
@@ -886,8 +886,8 @@ if (!empty($admin_user_data)) {
 					//dataType: "json",
 					data: {
 						"table_name": "admin_user_file",
-						"id_column": "admin_user_file_id",
-						'id': $admin_user_file_id,
+						"id_column": "id",
+						'id': $id,
 						"folder_name": "admin_user_file",
 						"<?= $csrf['name'] ?>": "<?= $csrf['hash'] ?>"
 					},

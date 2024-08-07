@@ -1,8 +1,3 @@
-<?php
-
-$page_module_name = "Employee";
-
-?>
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
@@ -55,7 +50,7 @@ $page_module_name = "Employee";
 												<label>Field</label>
 												<select name="field_name" id="field_name" class="form-control" style="width: 100%;">
 													<!-- <option value=''>Select Field</option> -->
-													<option value='ft.admin_user_name' <?php if ($field_name == 'ft.admin_user_name') {
+													<option value='ft.name' <?php if ($field_name == 'ft.name') {
 														echo 'selected';
 													} ?>>Employee Name
 													</option>
@@ -90,15 +85,15 @@ $page_module_name = "Employee";
 												<select type="text" class="form-control" id="user_role_id" name="user_role_id"
 													style="width: 100%;">
 													<option value="">Select Role</option>
-													<?php foreach ($users_role_data as $urd) {
+													<?php foreach ($admin_user_role_data as $item) {
 														$selected = "";
-														if ($urd->user_role_id == $user_role_id) {
+														if ($item->id == $user_role_id) {
 															$selected = "selected";
 														}
 														?>
-														<option value="<?php echo $urd->user_role_id ?>" <?php echo $selected ?>>
-															<?php echo $urd->admin_user_role_name ?>
-															<?php if ($urd->status != 1) {
+														<option value="<?php echo $item->id ?>" <?php echo $selected ?>>
+															<?php echo $item->name ?>
+															<?php if ($item->status != 1) {
 																echo " [Block]";
 															} ?>
 														</option>
@@ -114,15 +109,15 @@ $page_module_name = "Employee";
 												<select type="text" class="form-control" id="designation_id" name="designation_id"
 													style="width: 100%;">
 													<option value="">Select Designation</option>
-													<?php foreach ($designation_data as $d) {
+													<?php foreach ($designation_data as $item) {
 														$selected = "";
-														if ($d->designation_id == $designation_id) {
+														if ($item->id == $designation_id) {
 															$selected = "selected";
 														}
 														?>
-														<option value="<?php echo $d->designation_id ?>" <?php echo $selected ?>>
-															<?php echo $d->designation_name ?>
-															<?php if ($d->status != 1) {
+														<option value="<?php echo $item->id ?>" <?php echo $selected ?>>
+															<?php echo $item->name ?>
+															<?php if ($item->status != 1) {
 																echo " [Block]";
 															} ?>
 														</option>
@@ -140,17 +135,17 @@ $page_module_name = "Employee";
 											<div class="form-group">
 												<label>Country</label>
 												<select type="text" class="form-control" id="country_id" name="country_id"
-													onchange="getState(this.value ,0)" style="width: 100%;">
+													onchange="get_state(this.value ,0)" style="width: 100%;">
 													<option value="">Select Country</option>
-													<?php foreach ($country_data as $cd) {
+													<?php foreach ($country_data as $item) {
 														$selected = "";
-														if ($cd->country_id == $country_id) {
+														if ($item->id == $country_id) {
 															$selected = "selected";
 														}
 														?>
-														<option value="<?php echo $cd->country_id ?>" <?php echo $selected ?>>
-															<?php echo $cd->country_name ?>
-															<?php if ($cd->status != 1) {
+														<option value="<?php echo $item->id ?>" <?php echo $selected ?>>
+															<?php echo $item->name ?>
+															<?php if ($item->status != 1) {
 																echo " [Block]";
 															} ?>
 														</option>
@@ -164,7 +159,7 @@ $page_module_name = "Employee";
 											<div class="form-group">
 												<label>State</label>
 												<select type="text" class="form-control" id="state_id" name="state_id" style="width: 100%;"
-													onchange="getCity(this.value ,0)">
+													onchange="get_city(this.value ,0)">
 													<option value="">Select State</option>
 												</select>
 
@@ -320,11 +315,10 @@ $page_module_name = "Employee";
 													<td><?php echo $count ?>.</td>
 													<?php if ($user_access->update_module == 1) { ?>
 														<td><input type="checkbox" name="sel_recds[]" id="sel_recds<?php echo $count; ?>"
-																value="<?php echo $item->admin_user_id; ?>" /></td>
+																value="<?php echo $item->id; ?>" /></td>
 													<?php } ?>
-													<td><a
-															href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->admin_user_id ?>">
-															<?php echo $item->admin_user_name ?></a>
+													<td><a href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->id ?>">
+															<?php echo $item->name ?></a>
 													</td>
 													<td>
 														<?php
@@ -438,14 +432,14 @@ $page_module_name = "Employee";
 
 <script>
 
-	function getState(country_id, state_id = 0) {
+	function get_state(country_id, state_id = 0) {
 		$('#loader1').show();
 		$("#state_id").html('');
 		$("#city_id").html('');
 		if (country_id > 0) {
 			Pace.restart();
 			$.ajax({
-				url: "<?php echo MAINSITE_Admin . 'Ajax/getState' ?>",
+				url: "<?php echo MAINSITE_Admin . 'Ajax/get_state' ?>",
 				type: 'post',
 				dataType: "json",
 				data: { 'country_id': country_id, 'state_id': state_id, "<?php echo $csrf['name'] ?>": "<?php echo $csrf['hash'] ?>" },
@@ -461,12 +455,12 @@ $page_module_name = "Employee";
 
 	}
 
-	function getCity(state_id, city_id = 0) {
+	function get_city(state_id, city_id = 0) {
 		$("#city_id").html('');
 		if (state_id > 0) {
 			Pace.restart();
 			$.ajax({
-				url: "<?php echo MAINSITE_Admin . 'Ajax/getCity' ?>",
+				url: "<?php echo MAINSITE_Admin . 'Ajax/get_city' ?>",
 				type: 'post',
 				dataType: "json",
 				data: { 'city_id': city_id, 'state_id': state_id, "<?php echo $csrf['name'] ?>": "<?php echo $csrf['hash'] ?>" },
@@ -509,11 +503,11 @@ $page_module_name = "Employee";
 		})
 
 		<?php if (!empty($country_id) && !empty($state_id)) { ?>
-			getState(<?php echo $country_id ?>, <?php echo $state_id ?>)
+			get_state(<?php echo $country_id ?>, <?php echo $state_id ?>)
 		<?php } ?>
 
 		<?php if (!empty($city_id) && !empty($state_id)) { ?>
-			getCity(<?php echo $city_id ?>, <?php echo $state_id ?>)
+			get_city(<?php echo $city_id ?>, <?php echo $state_id ?>)
 		<?php } ?>
 
 	})
