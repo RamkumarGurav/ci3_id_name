@@ -134,10 +134,6 @@ class Wam extends Main
 
 
 
-
-
-
-
 		$this->data['tab_type'] = 'profile';
 
 		if (!empty($_POST['update_password_button'])) {

@@ -1,4 +1,3 @@
-
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
@@ -271,10 +270,10 @@
 													<td><?php echo $count ?>.</td>
 													<?php if ($user_access->update_module == 1) { ?>
 														<td><input type="checkbox" name="sel_recds[]" id="sel_recds<?php echo $count; ?>"
-																value="<?php echo $item->company_profile_id; ?>" /></td>
+																value="<?php echo $item->id; ?>" /></td>
 													<?php } ?>
 													<td><a
-															href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->company_profile_id ?>"><?php echo $item->company_unique_name ?></a>
+															href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->id ?>"><?php echo $item->company_unique_name ?></a>
 													</td>
 													<td><?php echo $item->company_name ?></td>
 													<td><?php echo $item->person_name ?><br><?php echo $item->email ?><br>

@@ -170,7 +170,7 @@ Nora Silvester
             <?php else: ?>
               <img src="<?= IMAGE_ADMIN ?>logo.jpg" class="user-image img-circle elevation-2">
             <?php endif; ?>
-            <span class="d-none d-md-inline"><?php echo $user_data->admin_user_name ?></span>
+            <span class="d-none d-md-inline"><?php echo $user_data->name ?></span>
           </a>
 
           <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right card-primary card-outline" style="left: inherit; right: 0px; padding: 5px;
@@ -186,7 +186,7 @@ Nora Silvester
               <?php endif; ?>
 
               <p>
-                <?php echo $user_data->admin_user_name ?> - <?php echo $user_data->admin_user_role_name ?>
+                <?php echo $user_data->name ?> - <?php echo $user_data->admin_user_role_name ?>
                 <small>Member since <?php echo date("M, Y", strtotime($user_data->added_on)) ?></small>
               </p>
             </li>

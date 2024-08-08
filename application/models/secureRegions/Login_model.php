@@ -55,7 +55,7 @@ class Login_model extends CI_Model
 				$this->db->select("ft.*, aur.name as admin_user_role_name, cp.company_unique_name");
 				$this->db->from("join_au_cp_aur as ft");
 				$this->db->join("admin_user_role as aur", "aur.id = ft.admin_user_role_id");
-				$this->db->join("company_profile as cp", "cp.company_profile_id = ft.company_profile_id");
+				$this->db->join("company_profile as cp", "cp.id = ft.company_profile_id");
 				$this->db->where("ft.admin_user_id", $result->id);
 				// Execute the query and assign the result to the roles property of the user object
 				$result->roles = $this->db->get()->result();
@@ -66,7 +66,7 @@ class Login_model extends CI_Model
 				$update_login['last_login'] = date('Y-m-d H:i:s');
 				$update_login['last_loginip'] = $client_ip;
 				// Update the user's last login information in the admin_user table
-				$response = $this->Common_model->update_operation(array('table' => "admin_user", 'data' => $update_login, 'condition' => "(id = $result->admin_user_id)"));
+				$response = $this->Common_model->update_operation(array('table' => "admin_user", 'data' => $update_login, 'condition' => "(id = $result->id)"));
 			}
 
 

@@ -28,7 +28,7 @@ class Company_profile_model extends CI_Model
 		$result = ''; // Initialize result variable
 
 		if (!empty($params['search_for'])) { // Check if search_for parameter is set
-			$this->db->select("count(ft.company_profile_id) as counts"); // Select count of company profiles
+			$this->db->select("count(ft.id) as counts"); // Select count of company profiles
 		} else {
 			// Select specific columns and additional fields for company profiles
 			$this->db->select("ft.*, ci.name as city_name, s.name as state_name, c.name as country_name, 

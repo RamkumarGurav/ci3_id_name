@@ -33,7 +33,7 @@ class Admin_user_model extends CI_Model
 		// Check if search_for parameter is provided to decide the count query
 		if (!empty($params['search_for'])) {
 
-			$this->db->select("count(ft.admin_user_id) as counts"); // Select count of records
+			$this->db->select("count(ft.id) as counts"); // Select count of records
 		} else {
 
 			// Select all required fields and additional information
