@@ -112,11 +112,12 @@ if (!empty($admin_user_data)) {
 							<input type="hidden" name="approval_access" value="0">
 
 							<div class="form-group row">
-								<div class="col-lg-3 col-md-4 col-sm-6">
-									<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Role
-										<span style="color:#f00;font-size: 22px;margin-top: 3px;">*</span></label>
-									<div class="col-sm-12">
-										<?php if (count($company_profile_data) > 1) { ?>
+
+								<?php if (count($company_profile_data) > 1) { ?>
+									<div class="col-lg-6 col-md-4 col-sm-6">
+										<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Role
+											<span style="color:#f00;font-size: 22px;margin-top: 3px;">*</span></label>
+										<div class="col-sm-12">
 											<div class="">
 												<table class="table table-hover text-nowrap" style="width:90%">
 													<thead>
@@ -139,7 +140,7 @@ if (!empty($admin_user_data)) {
 																	$selected_role = "";
 																	if (!empty($admin_user_data->roles)) {
 																		foreach ($admin_user_data->roles as $role) {
-																			if ($role->company_profile_id == $cpd->company_profile_id) {
+																			if ($role->company_profile_id == $cpd->id) {
 																				$selected_role = $role->admin_user_role_id;
 																			}
 																		}
@@ -169,7 +170,13 @@ if (!empty($admin_user_data)) {
 												</table>
 
 											</div>
-										<?php } else { ?>
+										</div>
+									</div>
+								<?php } else { ?>
+									<div class="col-lg-3 col-md-4 col-sm-6">
+										<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Role
+											<span style="color:#f00;font-size: 22px;margin-top: 3px;">*</span></label>
+										<div class="col-sm-12">
 											<?php $c_count = 0;
 											foreach ($company_profile_data as $cpd) {
 												$c_count++; ?>
@@ -205,9 +212,10 @@ if (!empty($admin_user_data)) {
 													<span style="color:red" class="error_span" id="user_role_error"></span>
 												</p>
 											<?php } ?>
-										<?php } ?>
+										</div>
 									</div>
-								</div>
+								<?php } ?>
+
 
 								<div class="col-lg-3 col-md-4 col-sm-6">
 									<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Designation <span
