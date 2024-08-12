@@ -1,18 +1,17 @@
 <?php
-$page_module_name = "Role Master";
-?>
-<?php
-$admin_user_role_name = "";
-$admin_user_role_id = 0;
+$name = "";
+$id = 0;
 $status = 1;
 $record_action = "Add New Record";
 if (!empty($admin_user_role_data)) {
 	$record_action = "Update";
-	$admin_user_role_id = $admin_user_role_data->admin_user_role_id;
-	$admin_user_role_name = $admin_user_role_data->admin_user_role_name;
+	$id = $admin_user_role_data->id;
+	$name = $admin_user_role_data->name;
 	$status = $admin_user_role_data->status;
 
 }
+
+
 ?>
 <!-- /.navbar -->
 
@@ -40,7 +39,7 @@ if (!empty($admin_user_role_data)) {
 							</a></li>
 						<?php if (!empty($admin_user_role_data)) { ?>
 							<li class="breadcrumb-item"><a
-									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $admin_user_role_id ?>">View</a>
+									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $id ?>">View</a>
 							</li>
 						<?php } ?>
 						<li class="breadcrumb-item">
@@ -64,7 +63,7 @@ if (!empty($admin_user_role_data)) {
 
 					<div class="card-header">
 						<h3 class="card-title">
-							<?php echo $admin_user_role_name ?> <small>
+							<?php echo $name ?> <small>
 								<?php echo $record_action ?>
 						</h3>
 					</div>
@@ -77,16 +76,15 @@ if (!empty($admin_user_role_data)) {
 
 							<?php echo form_open(MAINSITE_Admin . "$user_access->class_name/do_edit", array('method' => 'post', 'id' => 'ptype_list_form', "name" => "ptype_list_form", 'style' => '', 'class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data')); ?>
 
-							<input type="hidden" name="admin_user_role_id" id="admin_user_role_id"
-								value="<?php echo $admin_user_role_id ?>" />
+							<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
 							<input type="hidden" name="redirect_type" id="redirect_type" value="" />
 
 							<div class="card-body">
 								<div class="form-group row">
 									<label for="inputEmail3" class="col-sm-2 col-form-label-lg">User Role Name </label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control" required id="admin_user_role_name" name="admin_user_role_name"
-											value="<?php echo $admin_user_role_name ?>" placeholder="User Role Name">
+										<input type="text" class="form-control" required id="name" name="name" value="<?php echo $name ?>"
+											placeholder="User Role Name">
 										<span style="color:#f00;font-size: 22px;margin-top: 3px;">*</span>
 									</div>
 								</div>
@@ -101,7 +99,7 @@ if (!empty($admin_user_role_data)) {
 												<th>Add</th>
 												<th>Update</th>
 												<?php   /* ?><th>Delete</th>
-																																																																																																																																																																																																											<th>Approval</th><?php   */ ?>
+																																																																																																																																																																																																																																																																											<th>Approval</th><?php   */ ?>
 												<th>Import</th>
 												<th>Export</th>
 											</tr>
@@ -118,7 +116,7 @@ if (!empty($admin_user_role_data)) {
 												$all_checked = $view_checked = $add_checked = $update_checked = $delete_checked = $approval_checked = $import_checked = $export_checked = '';
 												if (!empty($module_permission_data)) {
 													foreach ($module_permission_data as $mpd) {
-														if ($md->module_id == $mpd->module_id) {
+														if ($md->id == $mpd->module_id) {
 															if (!empty($mpd->view_module)) {
 																$view_checked = 'checked ';
 																$all_checked = 'checked';
@@ -186,45 +184,41 @@ if (!empty($admin_user_role_data)) {
 																	data-off-color="danger" data-on-color="success" data-on-text="Yes" data-off-text="No">
 															</div>
 														</div> -->
-														<input type="checkbox" value="<?php echo $md->module_id ?>" name="module_ids[]"
-															class="module_all m_check_all_<?php echo $md->module_id ?>"
-															data-module_id="<?php echo $md->module_id ?>" <?php echo $all_checked ?> data-bootstrap-switch
+														<input type="checkbox" value="<?php echo $md->id ?>" name="module_ids[]"
+															class="module_all m_check_all_<?php echo $md->id ?>" data-module_id="<?php echo $md->id ?>"
+															<?php echo $all_checked ?> data-bootstrap-switch data-off-color="danger"
+															data-on-color="success" data-on-text="Yes" data-off-text="No">
+													</td>
+													<td>
+														<input type="checkbox" value="1" name="view_<?php echo $md->id ?>"
+															class="module_field m_check_field_<?php echo $md->id ?>"
+															data-module_id="<?php echo $md->id ?>" <?php echo $view_checked ?> data-bootstrap-switch
 															data-off-color="danger" data-on-color="success" data-on-text="Yes" data-off-text="No">
 													</td>
 													<td>
-														<input type="checkbox" value="1" name="view_<?php echo $md->module_id ?>"
-															class="module_field m_check_field_<?php echo $md->module_id ?>"
-															data-module_id="<?php echo $md->module_id ?>" <?php echo $view_checked ?>
-															data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="Yes"
-															data-off-text="No">
-													</td>
-													<td>
-														<input type="checkbox" value="1" name="add_<?php echo $md->module_id ?>"
-															class="module_field m_check_field_<?php echo $md->module_id ?>"
-															data-module_id="<?php echo $md->module_id ?>" <?php echo $add_checked ?> data-bootstrap-switch
+														<input type="checkbox" value="1" name="add_<?php echo $md->id ?>"
+															class="module_field m_check_field_<?php echo $md->id ?>"
+															data-module_id="<?php echo $md->id ?>" <?php echo $add_checked ?> data-bootstrap-switch
 															data-off-color="danger" data-on-color="success" data-on-text="Yes" data-off-text="No">
 													</td>
 													<td>
-														<input type="checkbox" value="1" name="update_<?php echo $md->module_id ?>"
-															class="module_field m_check_field_<?php echo $md->module_id ?>"
-															data-module_id="<?php echo $md->module_id ?>" <?php echo $update_checked ?>
-															data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="Yes"
-															data-off-text="No">
+														<input type="checkbox" value="1" name="update_<?php echo $md->id ?>"
+															class="module_field m_check_field_<?php echo $md->id ?>"
+															data-module_id="<?php echo $md->id ?>" <?php echo $update_checked ?> data-bootstrap-switch
+															data-off-color="danger" data-on-color="success" data-on-text="Yes" data-off-text="No">
 													</td>
 
 													<td>
-														<input type="checkbox" value="1" name="import_<?php echo $md->module_id ?>"
-															class="module_field m_check_field_<?php echo $md->module_id ?>"
-															data-module_id="<?php echo $md->module_id ?>" <?php echo $import_checked ?>
-															data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="Yes"
-															data-off-text="No">
+														<input type="checkbox" value="1" name="import_<?php echo $md->id ?>"
+															class="module_field m_check_field_<?php echo $md->id ?>"
+															data-module_id="<?php echo $md->id ?>" <?php echo $import_checked ?> data-bootstrap-switch
+															data-off-color="danger" data-on-color="success" data-on-text="Yes" data-off-text="No">
 													</td>
 													<td>
-														<input type="checkbox" value="1" name="export_<?php echo $md->module_id ?>"
-															class="module_field m_check_field_<?php echo $md->module_id ?>"
-															data-module_id="<?php echo $md->module_id ?>" <?php echo $export_checked ?>
-															data-bootstrap-switch data-off-color="danger" data-on-color="success" data-on-text="Yes"
-															data-off-text="No">
+														<input type="checkbox" value="1" name="export_<?php echo $md->id ?>"
+															class="module_field m_check_field_<?php echo $md->id ?>"
+															data-module_id="<?php echo $md->id ?>" <?php echo $export_checked ?> data-bootstrap-switch
+															data-off-color="danger" data-on-color="success" data-on-text="Yes" data-off-text="No">
 													</td>
 												</tr>
 											<?php } ?>

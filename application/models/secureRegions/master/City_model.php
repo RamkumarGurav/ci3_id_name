@@ -41,8 +41,8 @@ class City_model extends CI_Model
 		// From the city table (aliased as ft)
 		$this->db->from("city as ft");
 
-		$this->db->join("country as c", "c.id = ft.country_id");
-		$this->db->join("state as s", "s.id = ft.state_id");
+		$this->db->join("country as c", "c.id = ft.country_id", "Left");
+		$this->db->join("state as s", "s.id = ft.state_id", "Left");
 
 
 		// Conditional logic for ordering results

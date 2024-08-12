@@ -48,7 +48,7 @@ if(!empty($admin_user_data))
                 <div class="card ">
 
                     <div class="card-header">
-                        <h3 class="card-title"><?php  echo $admin_user_data->admin_user_name?></h3>
+                        <h3 class="card-title"><?php  echo $admin_user_data->name?></h3>
                         <div class="float-right">
                             <?php  
 								if($user_access->add_module==1 && false)	{
@@ -113,7 +113,7 @@ if(!empty($admin_user_data))
 										<strong class="full">Designation</strong>
 										<?php  echo $admin_user_data->designation_name?></td>
                                           <td >
-                                        <strong class="full">Joining Date1</strong>
+                                        <strong class="full">Joining Date</strong>
                                         <?php  if(!empty($admin_user_data->joining_date)){echo date("d-m-Y" , strtotime($admin_user_data->joining_date));}else{echo "-";}?></td>
                                         <td >
                                         <strong  class="full">Termination By</strong>
@@ -125,7 +125,7 @@ if(!empty($admin_user_data))
 									<tr>
                                         <td >
                                         <strong class="full">Employee Name</strong>
-                                        <?php  echo $admin_user_data->admin_user_name?></td>
+                                        <?php  echo $admin_user_data->name?></td>
                                         <td >
                                         <strong class="full">Password</strong>
                                         <?php  echo $admin_user_data->show_password?></td>

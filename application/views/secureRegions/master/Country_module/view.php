@@ -1,17 +1,12 @@
 <?php
-
-$page_module_name = "Country";
-
-?>
-<?php
-$country_name = "";
-$country_id = 0;
+$name = "";
+$id = 0;
 $status = 1;
 $record_action = "Add New Record";
 if (!empty($country_data)) {
     // $record_action = "Update";
-    // $country_id = $country_data->country_id;
-    // $country_name = $country_data->country_name;
+    // $id = $country_data->id;
+    // $name = $country_data->name;
     // $status = $country_data->status;
 
 }
@@ -54,7 +49,7 @@ if (!empty($country_data)) {
                 <div class="card">
 
                     <div class="card-header">
-                        <h3 class="card-title"><?php echo $country_data->country_name ?></h3>
+                        <h3 class="card-title"><?php echo $country_data->name ?></h3>
                         <div class="float-right">
                             <?php
                             if ($user_access->add_module == 1 && false) {
@@ -67,7 +62,7 @@ if (!empty($country_data)) {
                             if ($user_access->update_module == 1) {
                                 ?>
                                 <a
-                                    href="<?php echo MAINSITE_Admin . $user_access->class_name ?>/edit/<?php echo $country_data->country_id ?>">
+                                    href="<?php echo MAINSITE_Admin . $user_access->class_name ?>/edit/<?php echo $country_data->id ?>">
                                     <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i>
                                         Update</button>
                                 </a>
@@ -89,15 +84,15 @@ if (!empty($country_data)) {
                                     <tr>
                                         <td>
                                             <strong class="full">Data Base Id</strong>
-                                            <?php echo $country_data->country_id ?>
+                                            <?php echo $country_data->id ?>
                                         </td>
                                         <td>
                                             <strong class="full">Country Name</strong>
-                                            <?php echo $country_data->country_name ?>
+                                            <?php echo $country_data->name ?>
                                         </td>
                                         <td>
                                             <strong class="full">Short Name</strong>
-                                            <?php echo $country_data->country_short_name ?>
+                                            <?php echo $country_data->short_name ?>
                                         </td>
                                         <td>
                                             <strong class="full">Country Code</strong>

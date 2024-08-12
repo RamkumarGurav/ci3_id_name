@@ -22,6 +22,7 @@ class Login extends CI_Controller
 		//models
 		$this->load->model('Common_model');
 		$this->load->model('secureRegions/Login_model');
+		$this->load->model('secureRegions/company_profile/Company_profile_model');
 
 		//session data
 		$session_auid = $this->data['session_auid'] = $this->session->userdata('session_auid');
@@ -49,7 +50,12 @@ class Login extends CI_Controller
 	function index()
 	{
 
-
+		$this->data['company_logo_file_name'] = "";
+		$this->data['company_profile_data'] = $this->Company_profile_model->get_company_profile_data(array("details" => 1));
+		if (!empty($this->data['company_profile_data'])) {
+			$this->data['company_profile_data'] = $this->data['company_profile_data'][0];
+			$this->data['company_logo_file_name'] = $this->data['company_profile_data']->logo;
+		}
 
 
 		// Check if the session variables for user ID, name, and email are set
@@ -146,11 +152,21 @@ class Login extends CI_Controller
 
 	public function forgot_password()
 	{
+
+		$this->data['company_logo_file_name'] = "";
+		$this->data['company_profile_data'] = $this->Company_profile_model->get_company_profile_data(array("details" => 1));
+		if (!empty($this->data['company_profile_data'])) {
+			$this->data['company_profile_data'] = $this->data['company_profile_data'][0];
+			$this->data['company_logo_file_name'] = $this->data['company_profile_data']->logo;
+		}
+
 		$this->load->view('secureRegions/forgot_password', $this->data);
 	}
 
 
-	function getRandomString($length)
+
+
+	function get_random_string($length)
 	{
 		$validCharacters = "ABCDEFGHIJKLMNPQRSTUXYVWZ123456789";
 		$validCharNumber = strlen($validCharacters);
@@ -162,6 +178,8 @@ class Login extends CI_Controller
 		}
 		return $result;
 	}
+
+
 	public function save_new_password()
 	{
 		$admin_user_id = $_POST['admin_user_id'];
@@ -174,11 +192,15 @@ class Login extends CI_Controller
 		echo json_encode(array('status' => 1, 'message' => "Your password is changed successfully&nbsp;<a href='" . MAINSITE_Admin . "' style='color:blue;'>Click Here To Login</a>"));
 		die;
 	}
-	public function reset_password()
+	public function admin_reset_password()
 	{
 
 
+
+
 		$username = $_POST['username'];
+
+
 
 
 		$this->db
@@ -193,12 +215,13 @@ class Login extends CI_Controller
 			$result = $result->result();
 			$result = $result[0];
 			$status = true;
-			$token = $this->getRandomString(12);
+			$token = $this->get_random_string(12);
 			$email = $result->email;
 			$resetpwd_data['token'] = $token;
 			$resetpwd_data['email'] = $email;
 			$resetpwd_data['admin_user_id'] = $result->id;
 			$resetpwd_data['used'] = 0;
+			$resetpwd_data['added_by'] = $this->data['session_auid'];
 			$this->Common_model->add_operation(array('table' => 'au_pwd_reset_token', 'data' => $resetpwd_data));
 
 			//send Email
@@ -209,6 +232,7 @@ class Login extends CI_Controller
 			$mailMessage = str_replace("#token#", stripslashes($token), $mailMessage);
 			$mailMessage = str_replace("#uri#", MAINSITE_Admin, $mailMessage);
 
+
 			$subject = "User Forgot Password on Perealtors";
 			//	$mailStatus = $this->Common_model->send_mail_api(array("template"=>$mailMessage , "subject"=>$subject , "to"=>strtolower($b_email) , "name"=>$name ));
 			//	$mailStatus = $this->Common_model->send_mail_api(array("template"=>$mailMessage , "subject"=>$subject , "to"=>__adminemail__ , "name"=>"BSNL" ));
@@ -217,6 +241,8 @@ class Login extends CI_Controller
 			//$mailStatus = $this->Common_model->send_mail_api(array("template"=>$mailMessage , "subject"=>$subject , "to"=>"viswa69@gmail.com" , "name"=>"Booking" ));
 			//	$mailStatus = $this->Common_model->send_mail_api(array("template"=>$mailMessage , "subject"=>$subject , "to"=>"anilkumarbora14310@gmail.com" , "name"=>"Login Reset" ));
 			$message = 'We have sent the password reset link to your email id ' . $email;
+
+
 		} else {
 			$status = false;
 			$message = 'Email Id doesnot exist';
@@ -224,9 +250,24 @@ class Login extends CI_Controller
 		echo json_encode(array('status' => $status, 'message' => $message));
 		die;
 	}
-	public function admin_user_reset_password($token)
+
+
+	public function reset_password($token)
 	{
-		$this->data['au_pwd_reset_token_details'] = $au_pwd_reset_token_details = $this->Common_model->get_data_bsnl(array('select' => '*', 'from' => 'au_pwd_reset_token', 'where' => "token = '" . $token . "'"));
+
+
+
+
+		$this->data['company_logo_file_name'] = "";
+		$this->data['company_profile_data'] = $this->Company_profile_model->get_company_profile_data(array("details" => 1));
+		if (!empty($this->data['company_profile_data'])) {
+			$this->data['company_profile_data'] = $this->data['company_profile_data'][0];
+			$this->data['company_logo_file_name'] = $this->data['company_profile_data']->logo;
+		}
+
+
+
+		$this->data['au_pwd_reset_token_details'] = $au_pwd_reset_token_details = $this->Common_model->get_data(array('select' => '*', 'from' => 'au_pwd_reset_token', 'where' => "token = '" . $token . "'"));
 		$admin_user_id = $au_pwd_reset_token_details[0]->admin_user_id;
 		$used = $au_pwd_reset_token_details[0]->used;
 

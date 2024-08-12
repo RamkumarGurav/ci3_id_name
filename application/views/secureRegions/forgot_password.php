@@ -23,9 +23,12 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <!-- <a href="<? echo _lte_files_ ?>index2.html"><?php echo _project_complete_name_ ?></a> -->
-      <!-- <img src="<?php echo MAINSITE . "assets/images/logo.png" ?>" style="height:150px"> -->
-      <img src="<?= IMAGE ?>logo-2.png" style="height:100px;width:auto;">
+      <?php if (!empty($company_logo_file_name)): ?>
+        <img src="<?= _uploaded_files_ ?>company_profile/logo/<?= $company_logo_file_name ?>"
+          style="height:100px;width:auto;">
+      <?php else: ?>
+        <img src="<?= IMAGE_ADMIN ?>logo.jpg" style="height:100px;width:auto;">
+      <?php endif; ?>
     </div>
     <!-- /.login-logo -->
     <div class="card">
@@ -55,7 +58,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row d-flex justify-content-center">
           <!-- <div class="col-8">
             <div class="icheck-primary">
               <input type="checkbox" id="remember">
@@ -65,14 +68,11 @@
             </div>
           </div> -->
           <!-- /.col -->
-          <div class="col-4">
-          </div>
-          <div class="col-4">
-            <centre><button type="button" onclick="forgot_password_func()" name="login_btn" value="1"
-                class="btn btn-primary btn-block">Reset Pssword</button></centre>
-          </div>
-          <div class="col-4">
-          </div>
+
+
+          <button type="button" onclick="forgot_password_func()" name="login_btn" value="1"
+            class="btn btn-primary d-block">Reset Password</button>
+
           <!-- /.col -->
         </div>
         <?php echo form_close() ?>
@@ -80,10 +80,10 @@
 <div class="social-auth-links text-center mb-3">
 <p>- OR -</p>
 <a href="#" class="btn btn-block btn-primary">
-  <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+<i class="fab fa-facebook mr-2"></i> Sign in using Facebook
 </a>
 <a href="#" class="btn btn-block btn-danger">
-  <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+<i class="fab fa-google-plus mr-2"></i> Sign in using Google+
 </a>
 </div>
 <!-- /.social-auth-links -->
@@ -126,7 +126,7 @@
 
         type: "POST",
 
-        url: '<?= MAINSITE_Admin ?>Login/reset_password',
+        url: '<?= MAINSITE_Admin ?>Login/admin_reset_password',
 
         dataType: "json",
 

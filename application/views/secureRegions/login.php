@@ -25,12 +25,12 @@
   <div class="login-box">
     <div class="login-logo mx-auto">
 
-      <?php if (!empty($logo_file_name)): ?>
-        <img src="<?= _uploaded_files_ ?>company_logo/<?= $logo_file_name ?>" style="height:100px;width:auto;">
+      <?php if (!empty($company_logo_file_name)): ?>
+        <img src="<?= _uploaded_files_ ?>company_profile/logo/<?= $company_logo_file_name ?>"
+          style="height:100px;width:auto;">
       <?php else: ?>
         <img src="<?= IMAGE_ADMIN ?>logo.jpg" style="height:100px;width:auto;">
       <?php endif; ?>
-
       <!-- <h3 class="text-bold text-secondary">Admin Login</h3> -->
     </div>
     <!-- /.login-logo -->
@@ -100,7 +100,7 @@
           <!-- /.col -->
         </div>
         <?php echo form_close() ?>
-        <p class="mb-1">
+        <p class="mb-1 mt-3 text-right">
           <a href="<?= MAINSITE_Admin . 'Login/forgot_password' ?>">Forgot password</a>
         </p>
         <? /* ?>

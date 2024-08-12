@@ -315,6 +315,7 @@ class Common_model extends CI_Model
 		$entereddatamaillog['template'] = $template;
 		$entereddatamaillog['to'] = $to;
 		$entereddatamaillog['added_on'] = date('Y-m-d H:i:s');
+		$entereddatamaillog['added_by'] = $this->data['session_auid'];
 
 		$from_email = __from_email__;
 		$from_name = _project_name_;
@@ -346,19 +347,19 @@ class Common_model extends CI_Model
 		$post_data['v'] = "1.1";
 		$post_data['check_duplicate_post'] = "true";
 		/*foreach($post_data as $key=>$val) {
-																																									$request.= $key."=".urlencode($val);
-																																									$request.= "&";
-																																									}	*/
+																																																		$request.= $key."=".urlencode($val);
+																																																		$request.= "&";
+																																																		}	*/
 		$request = substr($request, 0, strlen($request) - 1);
 
 		/*$ch = curl_init();
-																																									curl_setopt($ch, CURLOPT_URL, $GATEWAYAPI);
-																																									curl_setopt($ch, CURLOPT_POST, 1);
-																																									curl_setopt($ch, CURLOPT_HEADER, 0);
-																																									curl_setopt($ch, CURLOPT_VERBOSE, 0);
-																																									curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-																																									curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
-																																									if(curl_exec($ch) === false){*/
+																																																		curl_setopt($ch, CURLOPT_URL, $GATEWAYAPI);
+																																																		curl_setopt($ch, CURLOPT_POST, 1);
+																																																		curl_setopt($ch, CURLOPT_HEADER, 0);
+																																																		curl_setopt($ch, CURLOPT_VERBOSE, 0);
+																																																		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+																																																		curl_setopt($ch, CURLOPT_POSTFIELDS, $request);
+																																																		if(curl_exec($ch) === false){*/
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $GATEWAYAPI);
 		curl_setopt($ch, CURLOPT_POST, 1);
@@ -477,8 +478,8 @@ class Common_model extends CI_Model
 	}
 
 	/****************************************************************
-																																																			
-																					****************************************************************/
+																																																							 
+																									 ****************************************************************/
 
 	/****************************************************************
 	 ****************************************************************

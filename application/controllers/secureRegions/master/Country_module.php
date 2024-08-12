@@ -347,7 +347,7 @@ class Country_module extends Main
 		}
 		$country_code = trim($_POST['country_code']);
 		$status = $_POST['status'];
-		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'country', 'where' => "name = '$name' and id != $id"));
+		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'country', 'where' => "name = \"$name\" and id != $id"));
 		//	echo $this->db->last_query();
 		//	print_r($is_exist);
 		if (!empty($is_exist)) {

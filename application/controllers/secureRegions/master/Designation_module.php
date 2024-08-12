@@ -348,7 +348,7 @@ class Designation_module extends Main
 		$name = trim($_POST['name']);
 		$status = trim($_POST['status']);
 
-		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'designation', 'where' => "name = '$name' and id != $id"));
+		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'designation', 'where' => "name = \"$name\" and id != $id"));
 
 
 		if (!empty($is_exist)) {

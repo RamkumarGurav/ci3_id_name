@@ -42,3 +42,35 @@ if (!empty($append_id_auf)) {
   <!-- Table cell for the remove button (this will be updated dynamically) -->
   <td class=" qe_sub_table_remove_td_auf"></td>
 </tr>
+
+
+
+<script>
+  $("#file_name_auf_<?= $id_auf ?>").on('change', function () {
+    $("#file_title_auf_<?= $id_auf ?>").attr('required', 'required');
+  });
+
+  // function previewImage(id) {
+  //   var input = document.getElementById('file_input_uekf_' + id);
+  //   var preview = document.getElementById('image_preview_uekf_' + id);
+
+  //   if (input.files && input.files[0]) {
+  //     var reader = new FileReader();
+
+  //     reader.onload = function (e) {
+  //       preview.src = e.target.result;
+  //       preview.style.display = 'block';
+  //     }
+
+  //     reader.readAsDataURL(input.files[0]);
+  //   } else {
+  //     preview.src = '';
+  //     preview.style.display = 'none';
+  //   }
+  // }
+
+
+
+
+
+</script>

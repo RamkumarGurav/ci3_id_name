@@ -370,7 +370,7 @@ class Admin_user_role_module extends Main
 		$this->data['page_parent_module_id'] = $this->data['user_access']->parent_module_id;
 
 
-		if (!empty($admin_user_role_idd)) {
+		if (!empty($id)) {
 			$this->data['admin_user_role_data'] = $this->Admin_user_role_model->get_admin_user_role_data(array("id" => $id));
 			if (empty($this->data['admin_user_role_data'])) {
 				$this->session->set_flashdata('alert_message', '<div class="alert alert-danger alert-dismissible">
@@ -451,7 +451,7 @@ class Admin_user_role_module extends Main
 				array(
 					'select' => '*',
 					'from' => 'admin_user_role',
-					'where' => "name = '$name' and id != $id"
+					'where' => "name = \"$name\" and id != $id"
 
 				)
 			);
@@ -477,7 +477,7 @@ class Admin_user_role_module extends Main
 		$insertStatus = 0;
 
 		// Update existing user role if admin_user_role_id is provided
-		if (!empty($admin_user_role_id)) {
+		if (!empty($id)) {
 			$enter_data['updated_on'] = date("Y-m-d H:i:s");
 			$enter_data['updated_by'] = $this->data['session_auid'];
 			$insertStatus = $this->Common_model->update_operation(array('table' => 'admin_user_role', 'data' => $enter_data, 'condition' => "id = $id"));

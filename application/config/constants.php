@@ -23,6 +23,7 @@ define('_summernote_', "");
 
 ///email api details
 define('__fromemail__', "info@ctitn.in");
+define('__from_email__', "info@ctitn.in");
 define('__fromemailpassword__', "dummypass");
 define('__email_user_id__', "email_user_id");
 define('__email_user_password__', "email_user_password");

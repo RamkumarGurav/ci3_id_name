@@ -20,7 +20,7 @@ class Screen_lock extends CI_Controller
 		//models
 		$this->load->model('Common_model');
 		$this->load->model('secureRegions/Screen_lock_model');
-
+		$this->load->model('secureRegions/company_profile/Company_profile_model');
 		//messages
 		$this->data['message'] = '';
 		$this->data['alert_message'] = '';
@@ -58,6 +58,12 @@ class Screen_lock extends CI_Controller
 	{
 
 
+		$this->data['company_logo_file_name'] = "";
+		$this->data['company_profile_data_for_logo'] = $this->Company_profile_model->get_company_profile_data(array("details" => 1));
+		if (!empty($this->data['company_profile_data_for_logo'])) {
+			$this->data['company_profile_data_for_logo'] = $this->data['company_profile_data_for_logo'][0];
+			$this->data['company_logo_file_name'] = $this->data['company_profile_data_for_logo']->logo;
+		}
 
 
 		// Retrieve the 'screen_lock' status from the session data

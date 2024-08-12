@@ -33,7 +33,7 @@ class State_model extends CI_Model
 		}
 
 		$this->db->from("state as ft");
-		$this->db->join("country as  c", "c.id = ft.country_id");
+		$this->db->join("country as  c", "c.id = ft.country_id", "Left");
 
 
 		// Conditional logic for ordering results

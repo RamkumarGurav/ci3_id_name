@@ -426,7 +426,7 @@ class Company_profile_module extends Main
 		$status = $_POST['status'];
 
 		// Check if the email already exists in the database (excluding the current profile)
-		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'company_profile', 'where' => "company_email = '$company_email' and id != $id"));
+		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'company_profile', 'where' => "company_email = \"$company_email\" and id != $id"));
 		if (!empty($is_exist)) {
 			$alert_message = '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="icon fas fa-ban"></i> Company Email already exist in database.</div>';
 			$this->session->set_flashdata('alert_message', $alert_message);
@@ -435,7 +435,7 @@ class Company_profile_module extends Main
 		}
 
 		// Check if the unique company name already exists in the database (excluding the current profile)
-		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'company_profile', 'where' => "company_unique_name = '$company_unique_name' and id != $id"));
+		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'company_profile', 'where' => "company_unique_name = \"$company_unique_name\" and id != $id"));
 		if (!empty($is_exist)) {
 			$alert_message = '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button><i class="icon fas fa-ban"></i> Company Profile already exist in database.</div>';
 			$this->session->set_flashdata('alert_message', $alert_message);

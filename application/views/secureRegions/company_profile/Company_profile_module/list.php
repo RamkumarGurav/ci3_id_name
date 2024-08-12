@@ -93,12 +93,12 @@
 													<option value="">Select Country</option>
 													<?php foreach ($country_data as $cd) {
 														$selected = "";
-														if ($cd->country_id == $country_id) {
+														if ($cd->id == $country_id) {
 															$selected = "selected";
 														}
 														?>
-														<option value="<?php echo $cd->country_id ?>" <?php echo $selected ?>>
-															<?php echo $cd->country_name ?>
+														<option value="<?php echo $cd->id ?>" <?php echo $selected ?>>
+															<?php echo $cd->name ?>
 															<?php if ($cd->status != 1) {
 																echo " [Block]";
 															} ?>
@@ -276,7 +276,7 @@
 															href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->id ?>"><?php echo $item->company_unique_name ?></a>
 													</td>
 													<td><?php echo $item->company_name ?></td>
-													<td><?php echo $item->person_name ?><br><?php echo $item->email ?><br>
+													<td><?php echo $item->name ?><br><?php echo $item->email ?><br>
 														<?php echo $item->mobile_no ?></td>
 													<td><?php echo date("d-m-Y", strtotime($item->added_on)) ?></td>
 													<td><?php echo $item->added_by_name ?></td>

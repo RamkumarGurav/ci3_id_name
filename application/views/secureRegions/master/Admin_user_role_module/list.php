@@ -1,8 +1,4 @@
-<?php
 
-$page_module_name = "Role ";
-
-?>
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
@@ -58,7 +54,7 @@ $page_module_name = "Role ";
                                                 <select name="field_name" id="field_name" class="form-control"
                                                     style="width: 100%;">
                                                     <!-- <option value=''>Select Field</option> -->
-                                                    <option value='ft.admin_user_role_name' <?php if ($field_name == 'ft.admin_user_role_name') {
+                                                    <option value='ft.name' <?php if ($field_name == 'ft.name') {
                                                         echo 'selected';
                                                     } ?>>User
                                                         Role Name</option>
@@ -226,9 +222,9 @@ $page_module_name = "Role ";
                                                 <td><?php echo $count ?>.</td>
                                                 <?php if ($user_access->update_module == 1) { ?>
                                                     <td><input type="checkbox" name="sel_recds[]" id="sel_recds<?php echo $count; ?>"
-                                                            value="<?php echo $item->admin_user_role_id; ?>" /></td>
+                                                            value="<?php echo $item->id; ?>" /></td>
                                                 <?php } ?>
-                                                <td><a href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->admin_user_role_id ?>"><?php echo $item->admin_user_role_name ?></a>
+                                                <td><a href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->id ?>"><?php echo $item->name ?></a>
                                                                                     </td>
                                                                                     <td><?php echo date("d-m-Y", strtotime($item->added_on)) ?></td>
                                                                                     <td><?php echo $item->added_by_name ?></td>

@@ -320,7 +320,7 @@ class Admin_user_module extends Main
 		}
 
 
-		if (empty($admin_user_id)) {
+		if (empty($id)) {
 			$alert_message = '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" 
 			aria-hidden="true">×</button><i class="icon fas fa-ban"></i> Something Went Wrong. Please Try Again. </div>';
 			$this->session->set_flashdata('alert_message', $alert_message);
@@ -398,6 +398,9 @@ class Admin_user_module extends Main
 
 	function do_edit()
 	{
+
+
+
 		$this->data['page_type'] = "list";
 		$user_access = $this->data['user_access'] = $this->data['User_auth_obj']->check_user_access(array("module_id" => $this->data['page_module_id']));
 
@@ -485,7 +488,7 @@ class Admin_user_module extends Main
 		if (!empty($_POST['termination_date']))
 			$enter_data['termination_date'] = date("Y-m-d", strtotime($_POST['termination_date']));
 
-		$enter_data['admin_user_role_id'] = $_POST['admin_user_role_id'];
+		// $enter_data['admin_user_role_id'] = $_POST['admin_user_role_id'];
 		// $enter_data['approval_access'] = $_POST['approval_access'];
 		// $enter_data['data_view'] = $_POST['data_view'];
 
@@ -693,7 +696,7 @@ class Admin_user_module extends Main
 	function upload_multi_files_auf($idf)
 	{
 		$table_name = "admin_user_file";
-		$idp_column = "admin_user_file_id";
+		$idp_column = "id";
 		$idf_column = "admin_user_id";
 		$input_file_name = "file_name_auf";
 		$input_text_name = "file_title_auf";
@@ -717,7 +720,7 @@ class Admin_user_module extends Main
 					$img_data[$idf_column] = $idf;
 					$img_data['added_on'] = date("Y-m-d H:i:s");
 					$img_data['added_by'] = $this->data['session_auid'];
-					$idp = $this->Common_Model->add_operation(array('table' => $table_name, 'data' => $img_data));
+					$idp = $this->Common_model->add_operation(array('table' => $table_name, 'data' => $img_data));
 
 					$count++;
 
@@ -726,7 +729,7 @@ class Admin_user_module extends Main
 					$timage_ext = end($temp_var);
 					$timage_name_new = $prefix . $idp . "." . $timage_ext;
 					$update_img_data[$target_file_column] = $timage_name_new;
-					$idp = $this->Common_Model->update_operation(array('table' => $table_name, 'data' => $update_img_data, 'condition' => "$idp_column = $idp"));
+					$idp = $this->Common_model->update_operation(array('table' => $table_name, 'data' => $update_img_data, 'condition' => "$idp_column = $idp"));
 					if ($idp > 0) {
 						move_uploaded_file($_FILES[$input_file_name]['tmp_name'][$i], _uploaded_temp_files_ . $target_folder_name . "/" . $timage_name_new);
 						$logo_file_name = $timage_name_new;

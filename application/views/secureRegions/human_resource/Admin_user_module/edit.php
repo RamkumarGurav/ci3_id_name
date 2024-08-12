@@ -50,6 +50,10 @@ if (!empty($admin_user_data)) {
 		}
 	}
 }
+
+
+
+
 ?>
 <!-- /.navbar -->
 
@@ -130,8 +134,7 @@ if (!empty($admin_user_data)) {
 																<td><?php echo $c_count ?>.</td>
 																<td><?php echo $cpd->company_unique_name ?></td>
 																<td>
-																	<input type="hidden" name="company_profile_id_arr[]"
-																		value="<?php echo $cpd->company_profile_id ?>">
+																	<input type="hidden" name="company_profile_id_arr[]" value="<?php echo $cpd->id ?>">
 																	<?php
 																	$selected_role = "";
 																	if (!empty($admin_user_data->roles)) {
@@ -145,14 +148,14 @@ if (!empty($admin_user_data)) {
 																	<select type="text" class="form-control form-control-sm" id="admin_user_role_id_arr"
 																		name="admin_user_role_id_arr[]">
 																		<option value="">Select Role</option>
-																		<?php foreach ($users_role_data as $urd) {
+																		<?php foreach ($admin_user_role_data as $urd) {
 																			$selected = "";
-																			if ($urd->admin_user_role_id == $selected_role) {
+																			if ($urd->id == $selected_role) {
 																				$selected = "selected";
 																			}
 																			?>
-																			<option value="<?php echo $urd->admin_user_role_id ?>" <?php echo $selected ?>>
-																				<?php echo $urd->admin_user_role_name ?>
+																			<option value="<?php echo $urd->id ?>" <?php echo $selected ?>>
+																				<?php echo $urd->name ?>
 																				<?php if ($urd->status != 1) {
 																					echo " [Block]";
 																				} ?>
@@ -170,29 +173,29 @@ if (!empty($admin_user_data)) {
 											<?php $c_count = 0;
 											foreach ($company_profile_data as $cpd) {
 												$c_count++; ?>
-												<input type="hidden" name="company_profile_id[]" value="<?php echo $cpd->company_profile_id ?>">
+												<input type="hidden" name="company_profile_id_arr[]" value="<?php echo $cpd->id ?>">
 												<?php
 												$selected_role = "";
 												if (!empty($admin_user_data->roles)) {
 													foreach ($admin_user_data->roles as $role) {
-														if ($role->company_profile_id == $cpd->company_profile_id) {
+														if ($role->company_profile_id == $cpd->id) {
 															$selected_role = $role->admin_user_role_id;
 														}
 													}
 												}
 												?>
-												<select required type="text" class="form-control form-control-sm" id="admin_user_role_id"
-													name="admin_user_role_id[]">
+												<select required type="text" class="form-control form-control-sm" id="admin_user_role_id_arr"
+													name="admin_user_role_id_arr[]">
 													<option value="">Select Role <?php echo $selected_role ?></option>
-													<?php foreach ($users_role_data as $urd) {
+													<?php foreach ($admin_user_role_data as $item) {
 														$selected = "";
-														if ($urd->admin_user_role_id == $selected_role) {
+														if ($item->id == $selected_role) {
 															$selected = "selected";
 														}
 														?>
-														<option value="<?php echo $urd->admin_user_role_id ?>" <?php echo $selected ?>>
-															<?php echo $urd->admin_user_role_name ?>
-															<?php if ($urd->status != 1) {
+														<option value="<?php echo $item->id ?>" <?php echo $selected ?>>
+															<?php echo $item->name ?>
+															<?php if ($item->status != 1) {
 																echo " [Block]";
 															} ?>
 														</option>
@@ -459,9 +462,9 @@ if (!empty($admin_user_data)) {
 															<tr id="gi<?= $item->id ?>">
 																<td><?= !empty($item->file_title) ? $item->file_title : "No Name" ?></td>
 																<td><span class="">
-																		<a target="_blank" href="<?= _uploaded_files_ . 'admin_user_file/' . $item->file_name ?>">
-																			<img class="imageThumb "
-																				src="<?= _uploaded_files_ . 'admin_user_file/' . $item->file_name ?>" />
+																		<a target="_blank" class="btn btn-primary btn-sm"
+																			href="<?= _uploaded_files_ . 'admin_user_file/' . $item->file_name ?>">
+																			view
 																		</a>
 																	</span></td>
 																<td><button class=" btn btn-outline-danger btn-xs"

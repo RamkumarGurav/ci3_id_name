@@ -417,7 +417,7 @@ class City_module extends Main
 		$is_display = $_POST['is_display'];
 
 		// Check if a city with the same name already exists in the same country and state but with a different id
-		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'city', 'where' => "name = '$name' and id != $id and country_id = $country_id and state_id = $state_id"));
+		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'city', 'where' => "name = \"$name\" and id != $id and country_id = $country_id and state_id = $state_id"));
 
 		// If the city exists, set an error message and redirect to the edit page
 		if (!empty($is_exist)) {

@@ -250,15 +250,15 @@ if (!empty($company_profile_data)) {
 											<select type="text" class="form-control form-control-sm custom-select" required id="country_id"
 												onchange="get_state(this.value ,0)" name="country_id">
 												<option value="">Select Country</option>
-												<?php foreach ($country_data as $cd) {
+												<?php foreach ($country_data as $item) {
 													$selected = "";
-													if ($cd->country_id == $country_id) {
+													if ($item->id == $country_id) {
 														$selected = "selected";
 													}
 													?>
-													<option value="<?php echo $cd->country_id ?>" <?php echo $selected ?>>
-														<?php echo $cd->country_name ?>
-														<?php if ($cd->status != 1) {
+													<option value="<?php echo $item->id ?>" <?php echo $selected ?>>
+														<?php echo $item->name ?>
+														<?php if ($item->status != 1) {
 															echo " [Block]";
 														} ?>
 													</option>

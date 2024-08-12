@@ -45,10 +45,10 @@ class Admin_user_model extends CI_Model
 		$this->db->from("admin_user as ft");
 
 		// Joins with other tables
-		$this->db->join("country as  c", "c.id = ft.country_id");
-		$this->db->join("state as  s", "s.id = ft.state_id");
-		$this->db->join("city as  ci", "ci.id = ft.city_id");
-		$this->db->join("designation as  dm", "dm.id = ft.designation_id");
+		$this->db->join("country as  c", "c.id = ft.country_id", "Left");
+		$this->db->join("state as  s", "s.id = ft.state_id", "Left");
+		$this->db->join("city as  ci", "ci.id = ft.city_id", "Left");
+		$this->db->join("designation as  dm", "dm.id = ft.designation_id", "Left");
 
 		// Conditional logic for ordering results
 		if (!empty($params['order_by'])) {

@@ -1,8 +1,3 @@
-<?php
-
-$page_module_name = "Country";
-
-?>
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
@@ -58,11 +53,11 @@ $page_module_name = "Country";
                                                 <select name="field_name" id="field_name" class="form-control"
                                                     style="width: 100%;">
                                                     <!-- <option value=''>Select Field</option> -->
-                                                    <option value='ft.country_name' <?php if ($field_name == 'ft.country_name') {
+                                                    <option value='ft.name' <?php if ($field_name == 'ft.name') {
                                                         echo 'selected';
                                                     } ?>>Country
                                                     </option>
-                                                    <option value='ft.country_short_name' <?php if ($field_name == 'ft.country_short_name') {
+                                                    <option value='ft.short_name' <?php if ($field_name == 'ft.short_name') {
                                                         echo 'selected';
                                                     } ?>>
                                                         Country Short Name</option>
@@ -241,12 +236,12 @@ $page_module_name = "Country";
                                                 <td><?php echo $count ?>.</td>
                                                 <?php if ($user_access->update_module == 1) { ?>
                                                     <td><input type="checkbox" name="sel_recds[]" id="sel_recds<?php echo $count; ?>"
-                                                            value="<?php echo $item->country_id; ?>" /></td>
+                                                            value="<?php echo $item->id; ?>" /></td>
                                                 <?php } ?>
                                                 <td><a
-                                                        href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->country_id ?>"><?php echo $item->country_name ?></a>
+                                                        href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->id ?>"><?php echo $item->name ?></a>
                                                 </td>
-                                                <td><?php echo $item->country_short_name ?></td>
+                                                <td><?php echo $item->short_name ?></td>
                                                 <?php   /*?><td><?php   echo $item->dial_code?></td><?php   */ ?>
                                                 <td><?php echo $item->country_code ?></td>
                                                 <td><?php echo date("d-m-Y", strtotime($item->added_on)) ?></td>

@@ -30,6 +30,26 @@
       width: 100% !important;
     }
   </style>
+  <style>
+    .custom-file-label.form-control-sm::after {
+      height: 1.8rem;
+      padding: .2rem 0.75rem;
+      height: 30px !important;
+      line-height: 1.8em !important;
+    }
+
+    .custom-file-label {
+      margin-bottom: 0;
+      margin-top: 0 !important;
+      height: 31px !important;
+    }
+
+    input[type="file"] {
+      display: block;
+      height: calc(1.8125rem + 2px);
+      height: 50px;
+    }
+  </style>
   <script>
 
     $.ajaxSetup({
@@ -164,8 +184,8 @@ Nora Silvester
 
         <li class="nav-item dropdown user-menu ">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-            <?php if (!empty($logo_file_name)): ?>
-              <img src="<?= _uploaded_files_ ?>company_logo/<?= $logo_file_name ?>"
+            <?php if (!empty($company_logo_file_name)): ?>
+              <img src="<?= _uploaded_files_ ?>company_profile/logo/<?= $company_logo_file_name ?>"
                 class="user-image img-circle elevation-2">
             <?php else: ?>
               <img src="<?= IMAGE_ADMIN ?>logo.jpg" class="user-image img-circle elevation-2">
@@ -177,9 +197,9 @@ Nora Silvester
     border-radius: 5%;">
             <!-- User image -->
             <li class="user-header ">
-              <?php if (!empty($logo_file_name)): ?>
-                <img src="<?= _uploaded_files_ ?>company_logo/<?= $logo_file_name ?>" style="height:100px;width:auto;"
-                  class="img-circle elevation-2" alt="User Image" alt="User Image">
+              <?php if (!empty($company_logo_file_name)): ?>
+                <img src="<?= _uploaded_files_ ?>company_profile/logo/<?= $company_logo_file_name ?>"
+                  style="height:100px;width:auto;" class="img-circle elevation-2" alt="User Image" alt="User Image">
               <?php else: ?>
                 <img src="<?= IMAGE_ADMIN ?>logo.jpg" style="height:100px;width:auto;" class="img-circle elevation-2"
                   alt="User Image" alt="User Image">

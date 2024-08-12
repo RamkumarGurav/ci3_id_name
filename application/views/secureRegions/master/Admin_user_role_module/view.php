@@ -1,16 +1,11 @@
-<?php
-
-$page_module_name = "Role Master";
-
-?>
 <?
 $name = "";
-$admin_user_role_id = 0;
+$id = 0;
 $status = 1;
 $record_action = "Add New Record";
 if (!empty($admin_user_role_data)) {
     // $record_action = "Update";
-    // $admin_user_role_id = $admin_user_role_data->admin_user_role_id;
+    // $id = $admin_user_role_data->id;
     // $name = $admin_user_role_data->name;
     // $status = $admin_user_role_data->status;
 
@@ -54,7 +49,7 @@ if (!empty($admin_user_role_data)) {
                 <div class="card">
 
                     <div class="card-header">
-                        <h3 class="card-title"><?php echo $admin_user_role_data->admin_user_role_name ?></h3>
+                        <h3 class="card-title"><?php echo $admin_user_role_data->name ?></h3>
                         <div class="float-right">
                             <?php
                             if ($user_access->add_module == 1 && false) {
@@ -67,7 +62,7 @@ if (!empty($admin_user_role_data)) {
                             if ($user_access->update_module == 1) {
                                 ?>
                                 <a
-                                    href="<?php echo MAINSITE_Admin . $user_access->class_name ?>/edit/<?php echo $admin_user_role_data->admin_user_role_id ?>">
+                                    href="<?php echo MAINSITE_Admin . $user_access->class_name ?>/edit/<?php echo $admin_user_role_data->id ?>">
                                     <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i>
                                         Update</button>
                                 </a>
@@ -97,7 +92,7 @@ if (!empty($admin_user_role_data)) {
                                             <th>Add</th>
                                             <th>Update</th>
                                             <?php   /* ?><th>Delete</th>
-                         <th>Approval</th><?php   */ ?>
+               <th>Approval</th><?php   */ ?>
                                             <th>Import</th>
                                             <th>Export</th>
                                         </tr>
@@ -114,7 +109,7 @@ if (!empty($admin_user_role_data)) {
                                             $all_checked = $view_checked = $add_checked = $update_checked = $delete_checked = $approval_checked = $import_checked = $export_checked = '<button type="button" class="btn btn-sm btn-block btn-danger">No</button>';
                                             if (!empty($module_permission_data)) {
                                                 foreach ($module_permission_data as $mpd) {
-                                                    if ($md->module_id == $mpd->module_id) {
+                                                    if ($md->id == $mpd->module_id) {
                                                         if (!empty($mpd->view_module)) {
                                                             $view_checked = '<button type="button" class="btn btn-sm btn-block btn-success">Yes</button> ';
                                                             $all_checked = 'checked';
@@ -180,11 +175,11 @@ if (!empty($admin_user_role_data)) {
                                                     <?php echo $update_checked ?>
                                                 </td>
                                                 <?php   /* ?><td>
-                                                                                                                                                             <?php   echo $delete_checked?>
-                                                                                                                                                         </td>
-                                                                                                                                                         <td>
-                                                                                                                                                             <?php   echo $approval_checked?>
-                                                                                                                                                         </td><?php   */ ?>
+                                                                                                                                                                                           <?php   echo $delete_checked?>
+                                                                                                                                                                                       </td>
+                                                                                                                                                                                       <td>
+                                                                                                                                                                                           <?php   echo $approval_checked?>
+                                                                                                                                                                                       </td><?php   */ ?>
                                                 <td>
                                                     <?php echo $import_checked ?>
                                                 </td>
@@ -205,11 +200,11 @@ if (!empty($admin_user_role_data)) {
                                         <tr>
                                             <td>
                                                 <strong class="full">Data Base Id</strong>
-                                                <?php echo $admin_user_role_data->admin_user_role_id ?>
+                                                <?php echo $admin_user_role_data->id ?>
                                             </td>
                                             <td>
                                                 <strong class="full">User Role Name</strong>
-                                                <?php echo $admin_user_role_data->admin_user_role_name ?>
+                                                <?php echo $admin_user_role_data->name ?>
                                             </td>
                                             <td>
                                                 <strong class="full">Added On</strong>

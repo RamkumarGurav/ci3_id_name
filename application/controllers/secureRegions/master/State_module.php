@@ -352,7 +352,7 @@ class State_module extends Main
 		$state_code = trim($_POST['state_code']);
 		$country_id = $_POST['country_id'];
 		$status = $_POST['status'];
-		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'state', 'where' => "name = '$name' and id != $id and country_id = $country_id"));
+		$is_exist = $this->Common_model->get_data(array('select' => '*', 'from' => 'state', 'where' => "name = \"$name\" and id != $id and country_id = $country_id"));
 		//	echo $this->db->last_query();
 		//	print_r($is_exist);
 		if (!empty($is_exist)) {

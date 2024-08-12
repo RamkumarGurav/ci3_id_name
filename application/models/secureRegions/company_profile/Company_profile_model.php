@@ -39,9 +39,9 @@ class Company_profile_model extends CI_Model
 
 
 		$this->db->from("company_profile as ft"); // Select from company_profile table
-		$this->db->join("country as c", "c.id = ft.country_id"); // Join country table
-		$this->db->join("state as s", "s.id = ft.state_id"); // Join state table
-		$this->db->join("city as ci", "ci.id = ft.city_id"); // Join city table
+		$this->db->join("country as c", "c.id = ft.country_id", "Left"); // Join country table
+		$this->db->join("state as s", "s.id = ft.state_id", "Left"); // Join state table
+		$this->db->join("city as ci", "ci.id = ft.city_id", "Left"); // Join city table
 
 		// Conditional logic for ordering results
 		if (!empty($params['order_by'])) {
