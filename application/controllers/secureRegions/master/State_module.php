@@ -156,7 +156,7 @@ class State_module extends Main
 
 		$search['limit'] = $per_page;
 		$search['offset'] = $offset;
-		$this->data['country_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'country', 'where' => "country_id > 0", "order_by" => "country_name ASC"));
+		$this->data['country_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'country', 'where' => "id > 0", "order_by" => "name ASC"));
 		$this->data['state_data'] = $this->State_model->get_state_data($search);
 
 		parent::get_header();

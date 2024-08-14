@@ -73,7 +73,7 @@ header("Content-Type: application/vnd.ms-excel");
                         ?>
                         <tr>
                             <td width="*"><?php echo $count; ?></td>
-                            <td width="*"><?php echo $item->designation_name; ?></td>
+                            <td width="*"><?php echo $item->name; ?></td>
                             <td width="*"> <?php echo date('d-m-Y h:i:a A', strtotime($item->added_on)); ?> &nbsp;</td>
                             <td width="*"><?php echo $item->added_by_name; ?></td>
                             <td width="*">

@@ -58,7 +58,7 @@ $page_module_name = "State";
                                                 <select name="field_name" id="field_name" class="form-control"
                                                     style="width: 100%;">
                                                     <!-- <option value=''>Select Field</option> -->
-                                                    <option value='ft.state_name' <?php if ($field_name == 'ft.state_name') {
+                                                    <option value='ft.name' <?php if ($field_name == 'ft.name') {
                                                         echo 'selected';
                                                     } ?>>State   Name
                                                     </option>
@@ -272,10 +272,10 @@ $page_module_name = "State";
                                                 <td><?php echo $count ?>.</td>
                                                 <?php if ($user_access->update_module == 1) { ?>
                                                     <td><input type="checkbox" name="sel_recds[]" id="sel_recds<?php echo $count; ?>"
-                                                            value="<?php echo $item->state_id; ?>" /></td>
+                                                            value="<?php echo $item->id; ?>" /></td>
                                                 <?php } ?>
                                                 <td><a
-                                                        href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->state_id ?>"><?php echo $item->state_name ?></a>
+                                                        href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->id ?>"><?php echo $item->name ?></a>
                                                 </td>
                                                 <td><?php echo $item->state_code ?></td>
                                                 <td><?php echo $item->country_name ?></td>

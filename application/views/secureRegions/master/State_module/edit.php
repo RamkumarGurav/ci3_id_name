@@ -2,9 +2,9 @@
 $page_module_name = "State";
 ?>
 <?php
-$state_name = "";
+$name = "";
 $state_code = "";
-$state_id = 0;
+$id = 0;
 $country_id = 0;
 $status = 1;
 $is_display = 1;
@@ -12,8 +12,8 @@ $record_action = "Add New Record";
 
 if (!empty($state_data)) {
 	$record_action = "Update";
-	$state_id = $state_data->state_id;
-	$state_name = $state_data->state_name;
+	$id = $state_data->id;
+	$name = $state_data->name;
 	$state_code = $state_data->state_code;
 	$status = $state_data->status;
 	$country_id = $state_data->country_id;
@@ -43,7 +43,7 @@ if (!empty($state_data)) {
 								List</a></li>
 						<?php if (!empty($state_data)) { ?>
 							<li class="breadcrumb-item"><a
-									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $state_id ?>">View</a>
+									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $id ?>">View</a>
 							</li>
 						<?php } ?>
 						<li class="breadcrumb-item"><?php echo $record_action ?></li>
@@ -64,7 +64,7 @@ if (!empty($state_data)) {
 				<div class="card">
 
 					<div class="card-header">
-						<h3 class="card-title"><?php echo $state_name ?> <small><?php echo $record_action ?></small></h3>
+						<h3 class="card-title"><?php echo $name ?> <small><?php echo $record_action ?></small></h3>
 					</div>
 					<!-- /.card-header -->
 					<?php
@@ -74,7 +74,7 @@ if (!empty($state_data)) {
 						<div class="card-body">
 
 							<?php echo form_open(MAINSITE_Admin . "$user_access->class_name/do_edit", array('method' => 'post', 'id' => 'ptype_list_form', "name" => "ptype_list_form", 'style' => '', 'class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data')); ?>
-							<input type="hidden" name="state_id" id="state_id" value="<?php echo $state_id ?>" />
+							<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
 							<input type="hidden" name="redirect_type" id="redirect_type" value="" />
 
 							<div class="form-group row">
@@ -104,8 +104,8 @@ if (!empty($state_data)) {
 									<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">State
 										<span style="color:#f00;font-size: 22px;margin-top: 3px;">*</span></label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control form-control-sm" required id="state_name" name="state_name"
-											value="<?php echo $state_name ?>" placeholder="State">
+										<input type="text" class="form-control form-control-sm" required id="name" name="name"
+											value="<?php echo $name ?>" placeholder="State">
 									</div>
 								</div>
 								<div class="col-md-4 col-sm-6">

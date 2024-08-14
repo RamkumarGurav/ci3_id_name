@@ -4,15 +4,15 @@ $page_module_name = "State";
 
 ?>
 <?
-$state_name = "";
+$name = "";
 $state_code = "";
-$state_id = 0;
+$id = 0;
 $status = 1;
 $record_action = "Add New Record";
 if (!empty($state_data)) {
     // $record_action = "Update";
-    // $state_id = $state_data->state_id;
-    // $state_name = $state_data->state_name;
+    // $id = $state_data->id;
+    // $name = $state_data->name;
     // $status = $state_data->status;
 
 }
@@ -55,7 +55,7 @@ if (!empty($state_data)) {
                 <div class="card">
 
                     <div class="card-header">
-                        <h3 class="card-title"><?php echo $state_data->state_name ?></h3>
+                        <h3 class="card-title"><?php echo $state_data->name ?></h3>
                         <div class="float-right">
                             <?php
                             if ($user_access->add_module == 1 && false) {
@@ -68,7 +68,7 @@ if (!empty($state_data)) {
                             if ($user_access->update_module == 1) {
                                 ?>
                                 <a
-                                    href="<?php echo MAINSITE_Admin . $user_access->class_name ?>/edit/<?php echo $state_data->state_id ?>">
+                                    href="<?php echo MAINSITE_Admin . $user_access->class_name ?>/edit/<?php echo $state_data->id ?>">
                                     <button type="button" class="btn btn-success btn-sm"><i class="fas fa-edit"></i>
                                         Update</button>
                                 </a>
@@ -91,7 +91,7 @@ if (!empty($state_data)) {
                                     <tr>
                                         <td>
                                             <strong class="full">Data Base Id</strong>
-                                            <?php echo $state_data->state_id ?>
+                                            <?php echo $state_data->id ?>
                                         </td>
                                         <td>
                                             <strong class="full">Country Name</strong>
@@ -99,7 +99,7 @@ if (!empty($state_data)) {
                                         </td>
                                         <td>
                                             <strong class="full">State Name</strong>
-                                            <?php echo $state_data->state_name ?>
+                                            <?php echo $state_data->name ?>
                                         </td>
                                         <td>
                                             <strong class="full">State Code</strong>

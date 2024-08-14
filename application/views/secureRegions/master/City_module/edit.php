@@ -1,10 +1,7 @@
 <?php
-$page_module_name = "City";
-?>
-<?php
-$city_name = "";
+$name = "";
 $city_code = "";
-$city_id = 0;
+$id = 0;
 $country_id = 0;
 $state_id = 0;
 $is_display = 1;
@@ -12,8 +9,8 @@ $status = 1;
 $record_action = "Add New Record";
 if (!empty($city_data)) {
 	$record_action = "Update";
-	$city_id = $city_data->city_id;
-	$city_name = $city_data->city_name;
+	$id = $city_data->id;
+	$name = $city_data->name;
 	$city_code = $city_data->city_code;
 	$status = $city_data->status;
 	$country_id = $city_data->country_id;
@@ -44,7 +41,7 @@ if (!empty($city_data)) {
 								List</a></li>
 						<?php if (!empty($city_data)) { ?>
 							<li class="breadcrumb-item"><a
-									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $city_id ?>">View</a></li>
+									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $id ?>">View</a></li>
 						<?php } ?>
 						<li class="breadcrumb-item"><?php echo $record_action ?></li>
 					</ol>
@@ -64,7 +61,7 @@ if (!empty($city_data)) {
 				<div class="card">
 
 					<div class="card-header">
-						<h3 class="card-title"><?php echo $city_name ?> <small><?php echo $record_action ?></small></h3>
+						<h3 class="card-title"><?php echo $name ?> <small><?php echo $record_action ?></small></h3>
 					</div>
 					<!-- /.card-header -->
 					<?php
@@ -73,7 +70,7 @@ if (!empty($city_data)) {
 						<?php echo $this->session->flashdata('alert_message'); ?>
 						<div class="card-body">
 							<?php echo form_open(MAINSITE_Admin . "$user_access->class_name/do_edit", array('method' => 'post', 'id' => '', "name" => "ptype_list_form", 'style' => '', 'class' => 'form-horizontal', 'role' => 'form')); ?>
-							<input type="hidden" name="city_id" id="city_id" value="<?php echo $city_id ?>" />
+							<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
 							<input type="hidden" name="redirect_type" id="redirect_type" value="" />
 
 							<div class="form-group row">
@@ -115,8 +112,8 @@ if (!empty($city_data)) {
 									<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">City <span
 											style="color:#f00;font-size: 22px;margin-top: 3px;">*</span></label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control form-control-sm" required id="city_name" name="city_name"
-											value="<?php echo $city_name ?>" placeholder="City">
+										<input type="text" class="form-control form-control-sm" required id="name" name="name"
+											value="<?php echo $name ?>" placeholder="City">
 
 									</div>
 								</div>

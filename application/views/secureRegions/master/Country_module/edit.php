@@ -2,18 +2,18 @@
 $page_module_name = "Country";
 ?>
 <?php
-$country_name = "";
-$country_short_name = "";
+$name = "";
+$short_name = "";
 $country_code = "";
 $dial_code = "";
-$country_id = 0;
+$id = 0;
 $status = 1;
 $record_action = "Add New Record";
 if (!empty($country_data)) {
 	$record_action = "Update";
-	$country_id = $country_data->country_id;
-	$country_name = $country_data->country_name;
-	$country_short_name = $country_data->country_short_name;
+	$id = $country_data->id;
+	$name = $country_data->name;
+	$short_name = $country_data->short_name;
 	$dial_code = $country_data->dial_code;
 	$status = $country_data->status;
 	$country_code = $country_data->country_code;
@@ -42,7 +42,7 @@ if (!empty($country_data)) {
 								List</a></li>
 						<?php if (!empty($country_data)) { ?>
 							<li class="breadcrumb-item"><a
-									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $country_id ?>">View</a>
+									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $id ?>">View</a>
 							</li>
 						<?php } ?>
 						<li class="breadcrumb-item"><?php echo $record_action ?></li>
@@ -63,7 +63,7 @@ if (!empty($country_data)) {
 				<div class="card">
 
 					<div class="card-header">
-						<h3 class="card-title"><?php echo $country_name ?> <small><?php echo $record_action ?></small></h3>
+						<h3 class="card-title"><?php echo $name ?> <small><?php echo $record_action ?></small></h3>
 					</div>
 					<!-- /.card-header -->
 					<?php
@@ -73,7 +73,7 @@ if (!empty($country_data)) {
 						<div class="card-body">
 
 							<?php echo form_open(MAINSITE_Admin . "$user_access->class_name/do_edit", array('method' => 'post', 'id' => 'ptype_list_form', "name" => "ptype_list_form", 'style' => '', 'class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data')); ?>
-							<input type="hidden" name="country_id" id="country_id" value="<?php echo $country_id ?>" />
+							<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
 							<input type="hidden" name="redirect_type" id="redirect_type" value="" />
 
 							<div class="row">
@@ -81,8 +81,8 @@ if (!empty($country_data)) {
 									<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Country <span
 											style="color:#f00;font-size: 22px;margin-top: 3px;">*</span></label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control form-control-sm" required id="country_name" name="country_name"
-											value="<?php echo $country_name ?>" placeholder="Country">
+										<input type="text" class="form-control form-control-sm" required id="name" name="name"
+											value="<?php echo $name ?>" placeholder="Country">
 
 									</div>
 								</div>
@@ -90,19 +90,18 @@ if (!empty($country_data)) {
 									<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Country Short Name <span
 											style="color:#f00;font-size: 22px;margin-top: 3px;">*</span></label>
 									<div class="col-sm-10">
-										<input type="text" class="form-control form-control-sm" required id="country_short_name"
-											name="country_short_name" value="<?php echo $country_short_name ?>"
-											placeholder="Country Short Name">
+										<input type="text" class="form-control form-control-sm" required id="short_name" name="short_name"
+											value="<?php echo $short_name ?>" placeholder="Country Short Name">
 
 									</div>
 								</div>
 								<?php   /*?><div class="col-lg-3 col-md-4 col-sm-6">
-																					<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Dial Code </label>
-																					<div class="col-sm-10">
-																					<input type="text" class="form-control form-control-sm" required id="dial_code" name="dial_code" value="<?php   echo $dial_code?>" placeholder="Dial Code">
-																					<span style="color:#f00;font-size: 22px;margin-top: 3px;">*</span>
-																					</div>
-																				</div><?php   */ ?>
+																																																			<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Dial Code </label>
+																																																			<div class="col-sm-10">
+																																																			<input type="text" class="form-control form-control-sm" required id="dial_code" name="dial_code" value="<?php   echo $dial_code?>" placeholder="Dial Code">
+																																																			<span style="color:#f00;font-size: 22px;margin-top: 3px;">*</span>
+																																																			</div>
+																																																		</div><?php   */ ?>
 								<div class="col-lg-3 col-md-4 col-sm-6">
 									<label for="inputEmail3" class="col-sm-12 label_content px-2 py-0">Country Code</label>
 									<div class="col-sm-10">

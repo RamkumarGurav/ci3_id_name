@@ -176,7 +176,7 @@ class City_module extends Main
 		$search['limit'] = $per_page;
 		$search['offset'] = $offset;
 
-		$this->data['country_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'country', 'where' => "country_id > 0", "order_by" => "name ASC"));
+		$this->data['country_data'] = $this->Common_model->get_data(array('select' => '*', 'from' => 'country', 'where' => "id > 0", "order_by" => "name ASC"));
 		$this->data['city_data'] = $this->City_model->get_city_data($search);
 
 		parent::get_header();

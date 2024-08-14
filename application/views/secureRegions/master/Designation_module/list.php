@@ -1,8 +1,3 @@
-<?php
-
-$page_module_name = "Designation";
-
-?>
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
@@ -58,7 +53,7 @@ $page_module_name = "Designation";
                                                 <select name="field_name" id="field_name" class="form-control"
                                                     style="width: 100%;">
                                                     <!-- <option value=''>Select Field</option> -->
-                                                    <option value='ft.designation_name' <?php if ($field_name == 'ft.designation_name') {
+                                                    <option value='ft.name' <?php if ($field_name == 'ft.name') {
                                                         echo 'selected';
                                                     } ?>>
                                                         Designation</option>
@@ -219,22 +214,22 @@ $page_module_name = "Designation";
 
                                         $count = $offset_val;
 
-                                        foreach ($designation_data as $ft) {
+                                        foreach ($designation_data as $item) {
                                             $count++;
                                             ?>
                                             <tr>
                                                 <td><?php echo $count ?>.</td>
                                                 <?php if ($user_access->update_module == 1) { ?>
                                                     <td><input type="checkbox" name="sel_recds[]" id="sel_recds<?php echo $count; ?>"
-                                                            value="<?php echo $ft->designation_id; ?>" /></td>
+                                                            value="<?php echo $item->id; ?>" /></td>
                                                 <?php } ?>
                                                 <td><a
-                                                        href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $ft->designation_id ?>"><?php echo $ft->designation_name ?></a>
+                                                        href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $item->id ?>"><?php echo $item->name ?></a>
                                                 </td>
-                                                <td><?php echo date("d-m-Y", strtotime($ft->added_on)) ?></td>
-                                                <td><?php echo $ft->added_by_name ?></td>
+                                                <td><?php echo date("d-m-Y", strtotime($item->added_on)) ?></td>
+                                                <td><?php echo $item->added_by_name ?></td>
                                                 <td>
-                                                    <?php if ($ft->status == 1) { ?> <i
+                                                    <?php if ($item->status == 1) { ?> <i
                                                             class="fas fa-check btn-success btn-sm "></i>
                                                     <?php } else { ?><i class="fas fa-ban btn-danger btn-sm "></i>
                                                     <?php } ?>

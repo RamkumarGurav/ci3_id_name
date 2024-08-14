@@ -356,7 +356,7 @@ class Designation_module extends Main
 			$this->session->set_flashdata('alert_message', $alert_message);
 			//echo $this->session->flashdata('alert_message' );
 			//echo "anubhav";
-			REDIRECT(MAINSITE_Admin . $user_access->class_name . "/designation-edit/" . $id);
+			REDIRECT(MAINSITE_Admin . $user_access->class_name . "/edit/" . $id);
 			exit;
 		}
 
@@ -385,7 +385,7 @@ class Designation_module extends Main
 		$this->session->set_flashdata('alert_message', $alert_message);
 
 		if (!empty($_POST['redirect_type'])) {
-			REDIRECT(MAINSITE_Admin . $user_access->class_name . "/designation-edit");
+			REDIRECT(MAINSITE_Admin . $user_access->class_name . "/edit");
 		}
 
 		REDIRECT(MAINSITE_Admin . $user_access->class_name . "/" . $user_access->function_name);

@@ -2,14 +2,14 @@
 $page_module_name = "Designation";
 ?>
 <?php
-$designation_name = "";
-$designation_id = 0;
+$name = "";
+$id = 0;
 $status = 1;
 $record_action = "Add New Record";
 if (!empty($designation_data)) {
 	$record_action = "Update";
-	$designation_id = $designation_data->designation_id;
-	$designation_name = $designation_data->designation_name;
+	$id = $designation_data->id;
+	$name = $designation_data->name;
 	$status = $designation_data->status;
 
 }
@@ -36,7 +36,7 @@ if (!empty($designation_data)) {
 								List</a></li>
 						<?php if (!empty($designation_data)) { ?>
 							<li class="breadcrumb-item"><a
-									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $designation_id ?>">View</a>
+									href="<?php echo MAINSITE_Admin . $user_access->class_name . "/view/" . $id ?>">View</a>
 							</li>
 						<?php } ?>
 						<li class="breadcrumb-item"><?php echo $record_action ?></li>
@@ -57,7 +57,7 @@ if (!empty($designation_data)) {
 				<div class="card">
 
 					<div class="card-header">
-						<h3 class="card-title"><?php echo $designation_name ?> <small><?php echo $record_action ?></small></h3>
+						<h3 class="card-title"><?php echo $name ?> <small><?php echo $record_action ?></small></h3>
 					</div>
 					<!-- /.card-header -->
 					<?php
@@ -68,15 +68,15 @@ if (!empty($designation_data)) {
 
 							<?php echo form_open(MAINSITE_Admin . "$user_access->class_name/do_edit", array('method' => 'post', 'id' => 'ptype_list_form', "name" => "ptype_list_form", 'style' => '', 'class' => 'form-horizontal', 'role' => 'form', 'enctype' => 'multipart/form-data')); ?>
 
-							<input type="hidden" name="designation_id" id="designation_id" value="<?php echo $designation_id ?>" />
+							<input type="hidden" name="id" id="id" value="<?php echo $id ?>" />
 							<input type="hidden" name="redirect_type" id="redirect_type" value="" />
 
 							<div class="row">
 								<div class="form-group col-md-6 row">
 									<label for="inputEmail3" class="col-sm-4 label_content text-right mt-2">Designation Name </label>
 									<div class="col-sm-6">
-										<input type="text" class="form-control form-control-sm" required id="designation_name"
-											name="designation_name" value="<?php echo $designation_name ?>" placeholder="Designation Name">
+										<input type="text" class="form-control form-control-sm" required id="name" name="name"
+											value="<?php echo $name ?>" placeholder="Designation Name">
 										<span style="color:#f00;font-size: 22px;margin-top: 3px;">*</span>
 									</div>
 								</div>

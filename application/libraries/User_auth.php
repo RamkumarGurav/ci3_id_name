@@ -178,7 +178,7 @@ class User_auth
 	{
 		$active = "";
 		if (!empty($params['page_module_id'])) {
-			if ($params['page_module_id'] == $obj->id) {
+			if ($params['page_module_id'] == $obj->module_id) {
 				$active = "active";
 			}
 		}

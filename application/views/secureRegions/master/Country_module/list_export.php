@@ -76,8 +76,8 @@ header("Content-Type: application/vnd.ms-excel");
                         ?>
                         <tr>
                             <td width="*"><?php echo $count; ?></td>
-                            <td width="*"><?php echo $item->country_name; ?></td>
-                            <td width="*"><?php echo $item->country_short_name; ?></td>
+                            <td width="*"><?php echo $item->name; ?></td>
+                            <td width="*"><?php echo $item->short_name; ?></td>
                             <?php   /*?><td width="*"><?php   echo $item->dial_code;?></td><?php   */ ?>
                             <td width="*"><?php echo $item->country_code; ?></td>
                             <td width="*"> <?php echo date('d-m-Y h:i:s A', strtotime($item->added_on)); ?> &nbsp;</td>
